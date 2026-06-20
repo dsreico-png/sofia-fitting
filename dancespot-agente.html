@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DanceSpot — Sofía, Experta en Puntas</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f7f5f3;
+  --surface:#ffffff;
+  --surface2:#f2f0ee;
+  --surface3:#eae8e5;
+  --border:#ddd9d4;
+  --border2:#ccc8c2;
+  --fx:#b01fbb;
+  --fx-bright:#d126dd;
+  --fx-dim:#8c1896;
+  --fx-glow:rgba(176,31,187,0.1);
+  --fx-soft:#7a1282;
+  --fx-light:#f5e6f7;
+  --cream:#1a1a1a;
+  --muted:#666360;
+  --muted2:#999490;
+  --white:#fff;
+  --user-bg:#f0eaf2;
+  --ai-bg:#ffffff;
+  --success:#1a6b3a;
+}
+html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Jost',sans-serif;font-size:14px;line-height:1.6;overflow:hidden}
+.app{display:grid;grid-template-columns:420px 1fr;height:100vh}
+@media(max-width:1024px){.app{grid-template-columns:1fr;grid-template-rows:auto auto 1fr}}
+
+/* HEADER */
+.hdr{
+  grid-column:1/-1;padding:10px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--white);border-bottom:2px solid var(--fx);
+  flex-wrap:wrap;gap:8px;position:relative;z-index:10;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{
+  width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,var(--fx),var(--fx-bright));
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+}
+.logo-name{
+  font-family:'Jost',sans-serif;font-size:18px;font-weight:700;
+  color:var(--fx-dim);letter-spacing:-.01em;
+}
+.logo-name span{color:#1a1a1a}
+.logo-sub{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.hdr-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.hdr-btn{
+  background:none;border:1px solid var(--border2);color:var(--muted);
+  padding:5px 12px;border-radius:6px;font-size:11px;cursor:pointer;
+  font-family:'Jost',sans-serif;font-weight:500;transition:all .2s;
+}
+.hdr-btn:hover{border-color:var(--fx);color:var(--fx-dim);background:var(--fx-light)}
+.hdr-btn.active{border-color:var(--fx);color:var(--fx-dim);background:var(--fx-light)}
+.status{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);
+  padding:5px 12px;border:1px solid var(--border);border-radius:6px;background:var(--surface2)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--fx-bright);
+  animation:glow 2s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(176,31,187,.3)}50%{box-shadow:0 0 0 4px rgba(176,31,187,0)}}
+
+/* FORM PANEL */
+.form-panel{
+  background:var(--white);border-right:1px solid var(--border);
+  border-bottom:2px solid var(--fx);
+  display:flex;flex-direction:column;overflow:hidden;
+  max-height:55vh;
+}
+@media(min-width:1025px){.form-panel{max-height:none;border-bottom:none;}}
+.panel-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--surface2)}
+.ptab{flex:1;padding:10px;font-size:11px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);border:none;background:none;
+  cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s;
+  border-bottom:2px solid transparent}
+.ptab:hover{color:var(--cream);background:var(--white)}
+.ptab.on{color:var(--fx-dim);border-bottom-color:var(--fx);background:var(--white)}
+
+.panel-content{flex:1;overflow-y:auto;padding:16px 18px}
+.panel-content::-webkit-scrollbar{width:4px}
+.panel-content::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+
+/* FORM FIELDS */
+.fsec{margin-bottom:20px}
+.fsec-title{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--fx-dim);margin-bottom:10px;display:flex;align-items:center;gap:6px;
+  padding-bottom:6px;border-bottom:1px solid var(--fx-light)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fgrid .full{grid-column:1/-1}
+.fld label{display:block;font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.fld label .req{color:var(--fx)}
+.fld input,.fld select,.fld textarea{
+  width:100%;background:var(--surface2);border:1px solid var(--border);
+  border-radius:6px;padding:8px 10px;color:var(--cream);
+  font-family:'Jost',sans-serif;font-size:13px;outline:none;
+  transition:border-color .15s,box-shadow .15s,background .15s;
+}
+.fld input:focus,.fld select:focus,.fld textarea:focus{
+  border-color:var(--fx);box-shadow:0 0 0 3px var(--fx-glow);background:var(--white)}
+.fld textarea{resize:vertical;min-height:56px}
+.fld select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23999490' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 9px center;
+  padding-right:26px;appearance:none}
+
+/* PHOTO UPLOAD */
+.photo-drop{
+  border:2px dashed var(--border2);border-radius:8px;
+  background:var(--surface2);padding:14px;text-align:center;
+  cursor:pointer;transition:all .2s;
+}
+.photo-drop:hover{border-color:var(--fx);background:var(--fx-light)}
+.photo-drop-lbl{font-size:12px;font-weight:600;color:var(--fx-dim)}
+.photo-drop-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.photo-grid{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.photo-thumb{position:relative;width:64px;height:64px}
+.photo-thumb img{width:100%;height:100%;object-fit:cover;border-radius:6px;border:2px solid var(--border)}
+.photo-thumb .rm{position:absolute;top:-4px;right:-4px;width:16px;height:16px;
+  background:var(--fx);border:none;border-radius:50%;color:#fff;
+  font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+/* ANALYZE BUTTON */
+.analyze-btn{
+  margin:12px 16px;
+  background:linear-gradient(135deg,var(--fx-dim),var(--fx-bright));
+  border:none;border-radius:8px;padding:13px;color:#fff;
+  font-family:'Jost',sans-serif;font-size:14px;font-weight:700;
+  cursor:pointer;width:calc(100% - 32px);
+  box-shadow:0 4px 14px rgba(176,31,187,0.25);transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  flex-shrink:0;letter-spacing:.02em;
+}
+.analyze-btn:hover{box-shadow:0 6px 20px rgba(176,31,187,.35);transform:translateY(-1px)}
+.analyze-btn:active{transform:scale(.98)}
+.analyze-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* UPLOAD MODES */
+.upload-modes{display:flex;flex-direction:column;gap:8px;padding:4px 0}
+.umode{
+  background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+  padding:14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px
+}
+.umode:hover{border-color:var(--fx);background:var(--fx-light)}
+.umode-icon{font-size:22px;flex-shrink:0}
+.umode-label{font-size:13px;font-weight:600;color:var(--cream)}
+.umode-sub{font-size:11px;color:var(--muted);margin-top:1px}
+
+.paste-area{background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+  padding:12px;color:var(--cream);font-family:'Jost',sans-serif;font-size:13px;
+  outline:none;resize:vertical;height:180px;line-height:1.6;width:100%;
+  margin-bottom:10px;transition:border-color .15s}
+.paste-area:focus{border-color:var(--fx);box-shadow:0 0 0 3px var(--fx-glow)}
+.paste-area::placeholder{color:var(--muted2)}
+
+/* CHAT PANEL */
+.chat-panel{display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+.chat{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px}
+.chat::-webkit-scrollbar{width:4px}
+.chat::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+
+/* MESSAGES */
+.msg{display:flex;gap:10px;animation:fadeUp .25s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg.user{flex-direction:row-reverse}
+.avatar{width:32px;height:32px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px}
+.avatar.ai{background:linear-gradient(135deg,var(--fx-dim),var(--fx-bright));color:#fff}
+.avatar.user{background:var(--fx-light);color:var(--fx-dim);border:1px solid var(--border)}
+.bubble{max-width:88%;padding:12px 15px;font-size:13px;line-height:1.75;border-radius:12px}
+.bubble.ai{
+  background:var(--white);border:1px solid var(--border);
+  border-left:3px solid var(--fx);
+  border-radius:4px 12px 12px 12px;color:var(--cream);
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  max-height:none;
+}
+.bubble.user{
+  background:var(--fx-light);border:1px solid rgba(176,31,187,0.2);
+  border-radius:12px 4px 12px 12px;color:var(--cream);
+}
+.bubble h3{font-size:13px;font-weight:700;color:var(--fx-dim);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.04em}
+.bubble h3:first-child{margin-top:0}
+.bubble p{margin-bottom:6px}.bubble p:last-child{margin-bottom:0}
+.bubble ul{padding-left:16px;margin-bottom:6px}
+.bubble li{margin-bottom:3px}
+.bubble strong{color:var(--fx-dim);font-weight:700}
+.bubble em{color:var(--muted);font-style:italic}
+.img-grid{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.img-grid img{width:72px;height:72px;object-fit:cover;border-radius:6px;border:1px solid var(--border)}
+
+/* ATTACH BADGES */
+.attach-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600;margin:2px}
+.badge-pdf{background:#e8f0fe;color:#1a56c9;border:1px solid #c5d5f9}
+.badge-img{background:var(--fx-light);color:var(--fx-dim);border:1px solid rgba(176,31,187,0.2)}
+.badge-txt{background:#e6f4ea;color:#1a6b3a;border:1px solid #b7dfbf}
+
+/* THINKING */
+.thinking-wrap{display:flex;gap:10px}
+.thinking{display:flex;align-items:center;gap:8px;padding:10px 14px;
+  background:var(--white);border:1px solid var(--border);border-left:3px solid var(--fx);
+  border-radius:4px 12px 12px 12px;font-size:12px;color:var(--muted);
+  box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+.thinking span{display:flex;gap:4px}
+.thinking span i{width:5px;height:5px;border-radius:50%;background:var(--fx);animation:bounce .9s ease-in-out infinite}
+.thinking span i:nth-child(2){animation-delay:.15s}.thinking span i:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
+
+/* WELCOME */
+.welcome{text-align:center;padding:32px 20px;max-width:480px;margin:auto}
+.welcome-logo{width:64px;height:64px;border-radius:50%;margin:0 auto 14px;
+  background:linear-gradient(135deg,var(--fx-dim),var(--fx-bright));
+  display:flex;align-items:center;justify-content:center;font-size:28px;
+  box-shadow:0 6px 20px rgba(176,31,187,0.2)}
+.welcome h2{font-family:'Jost',sans-serif;font-size:22px;font-weight:700;
+  color:var(--cream);margin-bottom:6px;letter-spacing:-.01em}
+.welcome p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px}
+.upload-options{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.upload-card{
+  background:var(--white);border:1px solid var(--border);border-radius:8px;
+  padding:14px 8px;cursor:pointer;transition:all .2s;text-align:center;
+  box-shadow:0 2px 6px rgba(0,0,0,0.04);
+}
+.upload-card:hover{border-color:var(--fx);background:var(--fx-light);box-shadow:0 4px 12px rgba(176,31,187,0.12)}
+.uc-icon{font-size:22px;margin-bottom:5px}
+.uc-label{font-size:11px;font-weight:700;color:var(--cream);margin-bottom:1px}
+.uc-sub{font-size:10px;color:var(--muted)}
+.quick-btns{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.qbtn{background:var(--white);border:1px solid var(--border);color:var(--muted);
+  padding:7px 12px;border-radius:6px;font-size:11px;cursor:pointer;
+  font-family:'Jost',sans-serif;font-weight:500;transition:all .2s;
+  box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.qbtn:hover{border-color:var(--fx);color:var(--fx-dim);background:var(--fx-light)}
+
+/* INPUT AREA */
+.chat-input{border-top:1px solid var(--border);background:var(--white);padding:10px 14px;flex-shrink:0;
+  box-shadow:0 -2px 8px rgba(0,0,0,0.04)}
+.input-row{display:flex;align-items:flex-end;gap:8px}
+.input-wrap{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+  display:flex;align-items:flex-end;transition:border-color .2s,box-shadow .2s}
+.input-wrap:focus-within{border-color:var(--fx);box-shadow:0 0 0 3px var(--fx-glow);background:var(--white)}
+textarea#inp{flex:1;background:none;border:none;outline:none;color:var(--cream);
+  font-family:'Jost',sans-serif;font-size:13px;padding:10px 12px;
+  resize:none;max-height:110px;min-height:38px;line-height:1.5}
+textarea#inp::placeholder{color:var(--muted2)}
+.send-btn{background:linear-gradient(135deg,var(--fx-dim),var(--fx-bright));
+  border:none;border-radius:8px;width:38px;height:38px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:#fff;font-size:16px;flex-shrink:0;
+  transition:opacity .2s,transform .1s;
+  box-shadow:0 3px 10px rgba(176,31,187,0.25)}
+.send-btn:hover{opacity:.88}.send-btn:active{transform:scale(.95)}
+.send-btn:disabled{opacity:.35;cursor:not-allowed;box-shadow:none}
+.hint{font-size:10px;color:var(--muted2);text-align:center;margin-top:5px}
+
+/* REPORT BAR */
+.report-bar{display:none;border-top:1px solid var(--border);background:var(--surface2);
+  padding:8px 14px;flex-shrink:0;flex-direction:row;align-items:center;
+  justify-content:space-between;gap:8px;flex-wrap:wrap}
+.report-bar.visible{display:flex}
+.report-bar-label{font-size:11px;color:var(--fx-dim);font-weight:700;letter-spacing:.04em}
+.report-btns{display:flex;gap:6px;flex-wrap:wrap}
+.rbtn{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;
+  font-size:11px;font-weight:600;font-family:'Jost',sans-serif;cursor:pointer;border:none;transition:all .2s}
+.rbtn-dl{background:linear-gradient(135deg,var(--fx-dim),var(--fx-bright));color:#fff;
+  box-shadow:0 3px 10px rgba(176,31,187,0.2)}
+.rbtn-dl:hover{box-shadow:0 4px 14px rgba(176,31,187,.35)}
+.rbtn-cp{background:var(--white);border:1px solid var(--border2);color:var(--cream)}
+.rbtn-cp:hover{border-color:var(--fx);color:var(--fx-dim)}
+.copy-done{font-size:10px;color:var(--success);font-weight:600;padding:0 6px;display:none}
+
+/* MODALS */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);
+  display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
+.modal-box{background:var(--white);border:1px solid var(--border);
+  border-top:3px solid var(--fx);border-radius:10px;padding:28px;
+  max-width:420px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,0.12)}
+.modal-box h3{font-family:'Jost',sans-serif;font-size:20px;font-weight:700;
+  color:var(--fx-dim);margin-bottom:6px}
+.modal-box p{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6}
+.modal-box input{width:100%;background:var(--surface2);border:1px solid var(--border);
+  border-radius:6px;padding:10px 12px;color:var(--cream);
+  font-family:monospace;font-size:11px;outline:none;margin-bottom:12px;
+  transition:border-color .15s}
+.modal-box input:focus{border-color:var(--fx);box-shadow:0 0 0 3px var(--fx-glow)}
+.modal-save{width:100%;background:linear-gradient(135deg,var(--fx-dim),var(--fx-bright));
+  border:none;border-radius:8px;padding:11px;color:#fff;
+  font-family:'Jost',sans-serif;font-size:14px;font-weight:700;cursor:pointer;
+  box-shadow:0 4px 14px rgba(176,31,187,0.25);transition:opacity .2s}
+.modal-save:hover{opacity:.88}
+
+.txt-modal{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;
+  align-items:center;justify-content:center;z-index:200;padding:20px}
+.txt-box{background:var(--white);border:1px solid var(--border);
+  border-top:3px solid var(--fx);border-radius:10px;padding:24px;
+  max-width:560px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,0.12)}
+.txt-box h3{font-size:18px;font-weight:700;color:var(--fx-dim);margin-bottom:5px}
+.txt-box p{font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6}
+.txt-box textarea{width:100%;background:var(--surface2);border:1px solid var(--border);
+  border-radius:6px;padding:12px;color:var(--cream);
+  font-family:'Jost',sans-serif;font-size:13px;outline:none;
+  resize:vertical;height:200px;line-height:1.6;margin-bottom:12px;
+  transition:border-color .15s}
+.txt-box textarea:focus{border-color:var(--fx);box-shadow:0 0 0 3px var(--fx-glow)}
+.txt-box textarea::placeholder{color:var(--muted2)}
+.txt-actions{display:flex;gap:8px}
+.txt-add{flex:1;background:linear-gradient(135deg,var(--fx-dim),var(--fx-bright));
+  border:none;border-radius:7px;padding:10px;color:#fff;
+  font-family:'Jost',sans-serif;font-size:13px;font-weight:700;cursor:pointer}
+.txt-cancel{background:var(--surface2);border:1px solid var(--border);
+  border-radius:7px;padding:10px 16px;color:var(--muted);
+  font-family:'Jost',sans-serif;font-size:13px;cursor:pointer;transition:all .2s}
+.txt-cancel:hover{border-color:var(--fx);color:var(--fx-dim)}
+
+/* PENDING */
+.pending-list{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:7px}
+.pending-item{display:flex;align-items:center;gap:5px;padding:4px 9px;
+  border-radius:6px;font-size:10px;border:1px solid var(--border);
+  background:var(--fx-light);color:var(--fx-dim)}
+.pending-item button{background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:0}
+.pending-item button:hover{color:var(--fx)}
+.pending-img-thumb{width:28px;height:28px;object-fit:cover;border-radius:4px;border:1px solid var(--border)}
+
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+</style>
+</head>
+<body>
+
+<!-- KEY MODAL -->
+<div class="modal-overlay" id="keyModal">
+  <div class="modal-box">
+    <h3>DanceSpot</h3>
+    <p>Ingresa tu API Key de Claude para activar a Sofía, tu asesora experta en zapatillas de punta.</p>
+    <input type="password" id="keyInput" placeholder="sk-ant-api03-..."/>
+    <button class="modal-save" onclick="saveKey()">🩰 Activar Sofía</button>
+  </div>
+</div>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="hdr">
+    <div class="logo">
+      <div class="logo-icon">🩰</div>
+      <div>
+        <div class="logo-name">Dance<span>Spot</span></div>
+        <div class="logo-sub">Sofía · Experta en puntas de ballet</div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <button class="hdr-btn active" id="tab-form-btn" onclick="switchMode('form')">📋 Formulario</button>
+      <button class="hdr-btn" id="tab-upload-btn" onclick="switchMode('upload')">📎 Subir archivos</button>
+      <button class="hdr-btn" onclick="clearChat()">🗑 Nueva sesión</button>
+      <button class="hdr-btn" onclick="showKeyModal()">🔑 Key</button>
+      <button class="hdr-btn" onclick="loadKnowledgeBase(true)">🔄 KB</button>
+      <div class="status"><div class="dot"></div><span id="kbStatus">Cargando KB...</span></div>
+    </div>
+  </header>
+
+  <!-- LEFT: FORM PANEL -->
+  <div class="form-panel">
+
+    <!-- FORM MODE -->
+    <div id="mode-form" style="display:flex;flex-direction:column;flex:1;overflow:hidden">
+      <div class="panel-content" style="flex:1">
+
+        <div class="fsec">
+          <div class="fsec-title">👤 Bailarina</div>
+          <div class="fgrid">
+            <div class="fld full"><label>Nombre completo <span class="req">*</span></label><input id="f-nombre" type="text" placeholder="Nombre de la bailarina"/></div>
+            <div class="fld"><label>Edad</label><input id="f-edad" type="text" placeholder="Ej: 14 años"/></div>
+            <div class="fld"><label>WhatsApp</label><input id="f-ws" type="text" placeholder="3001234567"/></div>
+            <div class="fld full"><label>Academia / Escuela</label><input id="f-academia" type="text" placeholder="Nombre de la academia"/></div>
+            <div class="fld"><label>Ciudad</label><input id="f-ciudad" type="text" placeholder="Cali"/></div>
+            <div class="fld"><label>Nivel de ballet <span class="req">*</span></label>
+              <select id="f-nivel">
+                <option value="">Selecciona</option>
+                <option value="Inicial">Inicial</option>
+                <option value="Intermedio">Intermedio</option>
+                <option value="Avanzado">Avanzado</option>
+                <option value="Profesional">Profesional</option>
+              </select></div>
+            <div class="fld"><label>Horas de práctica / semana <span class="req">*</span></label>
+              <select id="f-horas">
+                <option value="">Selecciona</option>
+                <option value="1-2 horas">1 a 2 horas</option>
+                <option value="3-4 horas">3 a 4 horas</option>
+                <option value="5-6 horas">5 a 6 horas</option>
+                <option value="7-10 horas">7 a 10 horas</option>
+                <option value="Más de 10 horas">Más de 10 horas</option>
+              </select></div>
+          </div>
+        </div>
+
+        <div class="fsec">
+          <div class="fsec-title">📐 Medidas del pie</div>
+          <div class="fgrid">
+            <div class="fld"><label>Talla nacional <span class="req">*</span></label><input id="f-talla" type="text" placeholder="Ej: 37"/></div>
+            <div class="fld"><label>Tipo de pie</label>
+              <select id="f-tipo">
+                <option value="">No sé / No definido</option>
+                <option value="egipcio">Egipcio (1er dedo más largo)</option>
+                <option value="griego">Griego (2do dedo más largo)</option>
+                <option value="cuadrado">Cuadrado (dedos similares)</option>
+              </select></div>
+            <div class="fld"><label>Largo pie derecho (cm)</label><input id="f-ld" type="text" placeholder="Ej: 23"/></div>
+            <div class="fld"><label>Largo pie izquierdo (cm)</label><input id="f-li" type="text" placeholder="Ej: 23"/></div>
+            <div class="fld"><label>Ancho pie derecho (cm)</label><input id="f-ad" type="text" placeholder="Ej: 9"/></div>
+            <div class="fld"><label>Ancho pie izquierdo (cm)</label><input id="f-ai" type="text" placeholder="Ej: 9"/></div>
+            <div class="fld"><label>Empeine</label>
+              <select id="f-empeine">
+                <option value="">No definido</option>
+                <option value="bajo">Bajo</option>
+                <option value="medio">Medio</option>
+                <option value="alto">Alto</option>
+              </select></div>
+            <div class="fld"><label>Fuerza del pie</label>
+              <select id="f-fuerza">
+                <option value="">No definida</option>
+                <option value="baja">Baja</option>
+                <option value="media">Media</option>
+                <option value="alta">Alta</option>
+              </select></div>
+            <div class="fld"><label>Estabilidad en relevé</label>
+              <select id="f-estab">
+                <option value="">No definida</option>
+                <option value="baja">Baja</option>
+                <option value="media">Media</option>
+                <option value="alta">Alta</option>
+              </select></div>
+            <div class="fld"><label>Control de tobillo</label>
+              <select id="f-tobillo">
+                <option value="">No definido</option>
+                <option value="bajo">Bajo</option>
+                <option value="medio">Medio</option>
+                <option value="alto">Alto</option>
+              </select></div>
+          </div>
+        </div>
+
+        <div class="fsec">
+          <div class="fsec-title">🩰 Historial de puntas</div>
+          <div class="fgrid">
+            <div class="fld full"><label>¿Primeras puntas o ya usa? <span class="req">*</span></label>
+              <select id="f-uso">
+                <option value="Primeras puntas">Primeras puntas</option>
+                <option value="Ya uso puntas">Ya uso puntas</option>
+              </select></div>
+            <div class="fld full"><label>Marcas usadas / preferidas</label>
+              <input id="f-marcas" type="text" placeholder="Ej: Grishko, FR Duval, ninguna..."/></div>
+            <div class="fld full"><label>Protectores / conejos que usa</label>
+              <input id="f-conejos" type="text" placeholder="Ej: Sí usa conejo de gel"/></div>
+            <div class="fld full"><label>Problemas o dolores reportados</label>
+              <textarea id="f-problemas" placeholder="Ej: Dolor en el dedo gordo, uñas..."></textarea></div>
+            <div class="fld full"><label>Observaciones adicionales</label>
+              <textarea id="f-obs" placeholder="Cualquier dato relevante..."></textarea></div>
+          </div>
+        </div>
+
+        <div class="fsec">
+          <div class="fsec-title">📸 Fotos del pie</div>
+          <div class="photo-drop" onclick="document.getElementById('photoIn').click()">
+            <input id="photoIn" type="file" multiple accept="image/*,.heic,.heif" style="display:none" onchange="onPhotosAdd(this)"/>
+            <div class="photo-drop-lbl">📷 Adjuntar fotos del pie</div>
+            <div class="photo-drop-sub">La IA analiza el tipo de pie, empeine y alineación visualmente</div>
+          </div>
+          <div class="photo-grid" id="photoGrid"></div>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- STICKY ANALYZE BUTTON - always visible -->
+    <div style="padding:12px 16px;border-top:2px solid var(--fx);background:var(--white);flex-shrink:0;">
+      <button class="analyze-btn" id="analyzeBtn" onclick="sendForm()" style="margin:0;width:100%">
+        🩰 Analizar con Sofía
+      </button>
+    </div>
+
+    <!-- UPLOAD MODE -->
+    <div id="mode-upload" style="display:none;flex-direction:column;flex:1;overflow:hidden">
+      <div class="panel-content" style="flex:1">
+        <div style="margin-bottom:14px">
+          <div style="font-family:'Dancing Script',cursive;font-size:16px;color:var(--fx-soft);margin-bottom:8px">Subir formulario existente</div>
+          <div class="upload-modes">
+            <div class="umode" onclick="document.getElementById('pdfIn').click()">
+              <div class="umode-icon">📄</div>
+              <div>
+                <div class="umode-label">PDF del formulario</div>
+                <div class="umode-sub">Sube el formulario diligenciado en PDF</div>
+              </div>
+            </div>
+            <div class="umode" onclick="document.getElementById('formImgIn').click()">
+              <div class="umode-icon">🖼</div>
+              <div>
+                <div class="umode-label">Foto del formulario</div>
+                <div class="umode-sub">Foto del formulario en papel o pantalla</div>
+              </div>
+            </div>
+            <div class="umode" onclick="showPaste()">
+              <div class="umode-icon">📋</div>
+              <div>
+                <div class="umode-label">Pegar respuestas</div>
+                <div class="umode-sub">Copia y pega las respuestas del form</div>
+              </div>
+            </div>
+          </div>
+          <input id="pdfIn" type="file" accept=".pdf" style="display:none" onchange="onPdfAdd(this)"/>
+          <input id="formImgIn" type="file" multiple accept="image/*,.heic,.heif" style="display:none" onchange="onFormImgAdd(this)"/>
+        </div>
+
+        <!-- PASTE -->
+        <div id="pasteSection" style="display:none;margin-top:8px">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:6px">Pega aquí las respuestas del formulario</div>
+          <textarea class="paste-area" id="pasteArea" placeholder="Nombre: ...
+Edad: ...
+Talla: ...
+Largo pie derecho: ...
+Ancho pie derecho: ..."></textarea>
+          <button onclick="addPasteToChat()" style="width:100%;background:linear-gradient(135deg,var(--fx),var(--fx-bright));border:none;border-radius:8px;padding:10px;color:#fff;font-family:'Dancing Script',cursive;font-size:17px;font-weight:700;cursor:pointer;box-shadow:0 0 12px var(--fx-glow)">
+            Enviar a Sofía
+          </button>
+        </div>
+
+        <!-- PENDING UPLOADS -->
+        <div id="uploadPendingList" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:5px"></div>
+
+        <!-- ALSO ATTACH PIE PHOTOS -->
+        <div style="margin-top:14px">
+          <div style="font-family:'Dancing Script',cursive;font-size:16px;color:var(--fx-soft);margin-bottom:8px">También adjuntar fotos del pie</div>
+          <div class="photo-drop" onclick="document.getElementById('pieImgIn').click()">
+            <input id="pieImgIn" type="file" multiple accept="image/*,.heic,.heif" style="display:none" onchange="onPieImgAdd(this)"/>
+            <div class="photo-drop-lbl">📸 Fotos del pie</div>
+            <div class="photo-drop-sub">Análisis visual IA</div>
+          </div>
+          <div class="photo-grid" id="piePhotoGrid"></div>
+        </div>
+
+        <button class="analyze-btn" style="margin:14px 0 0" onclick="sendUploads()">
+          🩰 Analizar con Sofía
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: CHAT -->
+  <div class="chat-panel">
+    <div class="chat" id="chat">
+      <div class="welcome" id="welcome">
+        <div class="welcome-logo">🩰</div>
+        <h2>Hola, soy Sofía</h2>
+        <p>Completa el formulario a la izquierda con las medidas de la bailarina y adjunta fotos del pie. Con un clic analizo todo y te doy las puntas recomendadas con tallas exactas por marca.</p>
+        <div class="quick-btns">
+          <button class="qbtn" onclick="quickSend('¿Qué fotos del pie son más útiles para el análisis?')">¿Qué fotos necesito?</button>
+          <button class="qbtn" onclick="quickSend('¿Cómo identifico si el pie es egipcio, griego o cuadrado?')">Tipos de pie</button>
+          <button class="qbtn" onclick="quickSend('¿Cómo se mide correctamente el ancho y largo del pie para puntas?')">Cómo medir el pie</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPORT BAR -->
+    <div class="report-bar" id="reportBar">
+      <span class="report-bar-label">✦ Reporte listo</span>
+      <div class="report-btns">
+        <span class="copy-done" id="copyDone">¡Copiado!</span>
+        <button class="rbtn rbtn-cp" onclick="copyReport()">📋 Copiar</button>
+        <button class="rbtn rbtn-dl" onclick="downloadReport()">⬇ Descargar</button>
+      </div>
+    </div>
+    <div class="chat-input">
+      <div class="input-row">
+        <div class="input-wrap">
+          <textarea id="inp" placeholder="Pregunta algo o escribe más detalles..." rows="1"
+            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"
+            oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+        </div>
+        <button class="send-btn" id="sendBtn" onclick="sendChat()">➤</button>
+      </div>
+      <div class="hint">Enter para enviar · Shift+Enter nueva línea</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const API_KEY_STORE='ds_sofia2_key';
+const MODEL='claude-sonnet-4-6';
+const KB_URL='https://script.google.com/macros/s/AKfycbyIxYU_lCgoo52mM59r66Kjp1AkkF765sWmuohngKqLrQwcjzTv4MKFAkh3X4LdbeUk/exec';
+let history=[],isThinking=false;
+let knowledgeBase={casos:[],stock:[],notas:[]};
+let kbLoaded=false;
+let kbLoadTime=null;
+
+// ── KNOWLEDGE BASE LOADER ──────────────────────────────
+function showKbStatus(msg, ok=false){
+  const el=document.getElementById('kbStatus');
+  if(el){el.textContent=msg;el.style.color=ok?'#4ade80':'var(--fx-soft)';}
+}
+
+async function loadKnowledgeBase(force=false){
+  const now=Date.now();
+  if(!force && kbLoaded && kbLoadTime && (now-kbLoadTime)<600000) return;
+  showKbStatus('⏳ Cargando KB...');
+  return new Promise(async (resolve)=>{
+
+    function processData(data){
+      if(data&&data.ok){
+        knowledgeBase.casos=data.casos||[];
+        knowledgeBase.notas=data.notas||[];
+        kbLoaded=true;kbLoadTime=now;
+        showKbStatus('✦ '+knowledgeBase.casos.length+' casos cargados',true);
+      } else {
+        showKbStatus('⚠ KB: error al cargar');
+      }
+    }
+
+    // Método 1: fetch directo (Chrome/Firefox)
+    try{
+      const ctrl=new AbortController();
+      const tid=setTimeout(()=>ctrl.abort(),5000);
+      const r=await fetch(KB_URL+'?tipo=casos_notas',{mode:'cors',signal:ctrl.signal});
+      clearTimeout(tid);
+      if(r.ok){const d=await r.json();processData(d);resolve();return;}
+    }catch(e1){}
+
+    // Método 2: proxy allorigins (resuelve CORS en Safari/iPad/iPhone)
+    try{
+      const proxy='https://api.allorigins.win/get?url='+encodeURIComponent(KB_URL+'?tipo=casos_notas');
+      const ctrl=new AbortController();
+      const tid=setTimeout(()=>ctrl.abort(),5000);
+      const r2=await fetch(proxy,{signal:ctrl.signal});
+      clearTimeout(tid);
+      if(r2.ok){const w=await r2.json();processData(JSON.parse(w.contents));resolve();return;}
+    }catch(e2){}
+
+    // Método 3: JSONP último recurso
+    const cb='dsKb_'+Date.now();
+    const sc=document.createElement('script');
+    const to=setTimeout(()=>{
+      delete window[cb];
+      try{document.body.removeChild(sc);}catch(e){}
+      showKbStatus('⚠ KB no disponible — el agente funciona sin casos reales');
+      resolve();
+    },10000);
+    window[cb]=function(data){
+      clearTimeout(to);delete window[cb];
+      try{document.body.removeChild(sc);}catch(e){}
+      processData(data);resolve();
+    };
+    sc.src=KB_URL+'?tipo=casos_notas&callback='+cb;
+    sc.onerror=()=>{clearTimeout(to);showKbStatus('⚠ KB no disponible');resolve();};
+    document.body.appendChild(sc);
+  });
+}
+let formPhotos=[];      // fotos del pie desde el formulario
+let uploadPending=[];   // archivos subidos en modo upload
+let piePhotosUpload=[]; // fotos del pie en modo upload
+
+const SYSTEM=`Eres Sofía, experta en fitting de puntas de ballet de DanceSpot Colombia. Sistema especializado exclusivamente en puntas de ballet. No eres asistente general.
+
+PRIORIDAD DE MEDIDAS:
+Guiarte SIEMPRE por la talla de zapato nacional primero. Si el largo del pie no coincide con la talla de zapato, prevalece la talla de zapato. La bailarina puede equivocarse al medir.
+
+CRITERIOS A EVALUAR SIEMPRE:
+Tipo de pie | Empeine | Fuerza | Ancho | Nivel técnico | Horas de práctica | Estabilidad | Control tobillo | Historial puntas | Problemas
+
+REGLA CONEJO: +1 talla y +1 ancho sobre la base calculada (siempre).
+
+══════════════════════════════
+TABLAS OFICIALES POR MARCA
+══════════════════════════════
+
+GRISHKO — modelos permitidos: 2007 PRO, 2007 PRO FLEX, StreamPointe
+
+Tabla largo pie → talla Grishko base:
+20.5–21.0cm → T1 | 21.0–21.5cm → T1.5 | 21.5–22.0cm → T2 | 22.0–22.5cm → T2.5
+22.5–23.0cm → T3 | 23.0–23.5cm → T3.5 | 23.5–24.0cm → T4 | 24.0–24.5cm → T4.5
+24.5–25.0cm → T5 | 25.0–25.5cm → T5.5 | 25.5–26.0cm → T6 | 26.0–26.5cm → T6.5
+26.5–27.0cm → T7 | 27.0–27.5cm → T7.5 | 27.5–28.0cm → T8
+Con conejo: +0.5 talla. Ejemplo: EU36 → base T3.5 → con conejo T4.
+
+Anchos Grishko (con conejo subir 1):
+X=6.5–7cm | XX=7–7.5cm | XXX=7.6–8cm | XXXX=8.1–9cm | XXXXX=10.4cm+
+
+Durezas 2007 PRO: SS=muy suave | S=suave | M=media | H=dura | SH=muy dura
+Durezas 2007 PRO FLEX: sin dureza=muy suave | S=suave
+Durezas StreamPointe: S=suave | M=media | H=dura | R=muy dura
+StreamPointe: horma SmartPointe, más largo interno que 2007. Bailarina que usa T4.5 en 2007 usa T4 en StreamPointe.
+
+——————————————————————————————
+FR DUVAL 3.0 — único modelo permitido
+
+Tabla largo pie → talla FR Duval base:
+21.0–21.5cm → T4 | 21.5–22.0cm → T5 | 22.0–22.5cm → T6 | 22.5–23.0cm → T7
+23.0–23.5cm → T8 | 23.5–24.0cm → T9 | 24.0–24.5cm → T10 | 24.5–25.0cm → T11
+25.0–25.5cm → T12 | 25.5–26.0cm → T13 | 26.0–26.5cm → T14 | 26.5–27.0cm → T15
+Con conejo: +1 talla.
+
+Anchos FR Duval (con conejo subir 1):
+N=6.5–7.5cm | M=7.5–8.0cm | W=8.0–9.2cm | X=9.2–9.8cm | XX=9.9cm+
+
+Durezas FR Duval: FLX=muy suave | REG=media | STR=media-alta | XTR=rígida | XST=muy rígida
+Plataforma más taperad (estrecha). Horma ligeramente más estrecha que convencional.
+
+——————————————————————————————
+BLOCH B-Morph — único modelo permitido
+
+Anchos Bloch (con conejo subir 1):
+1X=7.8–8.5cm | 2X=8.5–9.2cm | 3X=9.2–9.9cm
+
+——————————————————————————————
+FREED OF LONDON — modelos: Studio 2, Studio Professional, Classic
+
+Línea Studios (con conejo subir 1 ancho):
+C=8.0–8.6cm | D=8.6–9.2cm | E=9.2–9.8cm | EE=9.8–10.5cm
+Studios Opera: tallas UK 1–7 | Studios: tallas UK 2–8 | Studios II, Professional: tallas UK 2–8
+Caña: Flexible (Opera), Standard o Dura (Studios), Pro Light/Pro/Pro Hard (Classic)
+
+Línea Classic (con conejo subir 1 ancho):
+X=8.0–8.6cm | XX=8.6–9.2cm | XXX=9.2–9.9cm
+Classic: caña regular | Classic Plus: caña media | Classic Pro: caña Pro | Classic Pro Hard: caña dura
+
+——————————————————————————————
+MERLET C Lisa — único modelo permitido
+
+Tabla oficial EU → talla Merlet:
+33→7 | 33.5→8 | 34→9 | 34.5→10 | 35→11 | 35.5→12 | 36→13 | 36.5→14
+37→15 | 37.5→16 | 38→17 | 38.5→18 | 39→19 | 39.5→20 | 40→21 | 41→23 | 42→25
+Con conejo: +2 en la escala Merlet (equivale a +1 talla EU).
+
+Anchos Merlet (con conejo subir 1):
+B=7.9–8.6cm | C=8.6–9.3cm | D=9.3–10.0cm
+
+Cambrions Merlet (shank interchangeable):
+Sin cambrion=muy suave | S=suave | M=medio | H=duro | HH=muy duro
+Vamp: 112 Basse (empeine bajo/medio) | 111 Haute (empeine alto)
+
+——————————————————————————————
+GAYNOR MINDEN — modelos: Sculpted Fit (SC), Classic Fit (CL), Sleek Fit (SK)
+
+Tabla EU → talla Gaynor Minden:
+EU33→4/4.5 | EU33.5→4.5/5 | EU34→5/5.5 | EU34.5→5.5/6 | EU35→6/6.5 | EU35.5→6.5/7
+EU36→7/7.5 | EU36.5→7.5/8 | EU37→8/8.5 | EU37.5→8.5/9 | EU38→9/9.5 | EU38.5→9.5/10
+EU39→10/10.5 | EU40→11/11.5 | EU41→12/12.5 | EU42→13/13.5
+Con conejo: +1 talla y +1 Width.
+
+Width (ancho, con conejo subir 1):
+N=Narrow=7.8–8.6cm | M=Medium=8.6–9.5cm | W=Wide=9.5–10.5cm
+
+Box (forma de dedos):
+#2=pequeña y taperad/egipcio | #3=media taperad/estándar | #3+=media cuadrada
+#4=amplia/cuadrado | #5=muy amplia y cuadrada/metatarso muy ancho
+
+Shank Gaynor Minden:
+P=Pianissimo (muy flexible) | F=Feather (flexible) | S=Supple (medio) | X=ExtraFlex (rígido) | H=Hard (muy rígido)
+No se recomienda H para la mayoría de bailarinas.
+
+Fit models:
+SC (Sculpted): antepié amplio, centro ceñido, talón estrecho-medio → pie con "cintura"
+CL (Classic): corte generoso en todo → pie en "U"
+SK (Sleek): metatarso fino, centro y talón muy estrechos → pie en "V" tapered
+
+——————————————————————————————
+CAPEZIO — solo si la bailarina lo solicita explícitamente
+
+EU→US calle: 33→1 | 34→1.5 | 35→2 | 36→2.5 | 37→3 | 38→3.5 | 39→4 | 40→4.5 | 41→5 | 42→5.5
+Contempora/Pavlova: US calle - 2.5 | Juliet/Cambre: US calle + 1
+Anchos: X(A)≤7.5cm | XX(B)≤8.2cm | XXX(C)≤9.2cm | XXXX(D)>9.2cm
+Shank: Eje #1 suave | Eje #2 medio | Eje #3 firme
+
+══════════════════════════════
+LÓGICA DE DUREZA: FUERZA × HORAS
+══════════════════════════════
+Primeras puntas → siempre la dureza más suave disponible sin importar las horas
+Fuerza BAJA (cualquier horas) → suave (SS/sin dureza/FLX/S Merlet) — nunca subir
+Fuerza MEDIA: 1-4h→S/FLX | 5-6h→S o M / REG | 7-10h→M/REG | 10h+→M o H/STR
+Fuerza ALTA: 1-4h→M/REG | 5-6h→H/STR | 7-10h→H/STR | 10h+→SH/XTR
+Nivel avanzado/profesional + muchas horas → puede justificar subir una dureza extra
+
+AJUSTE POR MORFOLOGÍA:
+Pie egipcio → caja cónica/taperad, FR Duval ideal | Pie griego → evitar rígidas/estrechas, StreamPointe o FR Duval
+Pie cuadrado → caja amplia, Gaynor #4/#5 o B-Morph | Empeine alto → Merlet vamp 111 Haute, +0.5 en otras marcas
+
+USO DE CASOS REALES:
+Referencia técnica de tallas. Compara por morfología (tipo de pie, ancho, talla zapato). NO busques por nombre ni preguntes relaciones. Si hay coincidencia di brevemente "Validado con caso real similar" y continúa.
+
+MODELOS PERMITIDOS:
+FR Duval 3.0 | Grishko: 2007 PRO FLEX, 2007 PRO, StreamPointe | Bloch: B-Morph
+Freed: Studio 2, Studio Professional, Classic | Gaynor Minden | Merlet: C Lisa | Capezio (solo si lo solicita)
+
+PROHIBIDO:
+Mezclar nomenclaturas de dureza entre marcas | Inventar códigos | Omitir ancho | Más de 3 en TOP 3 | Modelos no listados
+Durezas por marca: FLX/REG/STR/XTR/XST solo FR Duval | SS/S/M/H/SH solo Grishko 2007 PRO | sin dureza/S solo 2007 FLEX | S/M/H/R solo StreamPointe | S/M/H/HH/sin cambrion solo Merlet | P/F/S/X/H solo Gaynor Minden
+
+VALIDAR antes de responder:
+Talla coherente con talla de zapato | Ancho correcto | Dureza según fuerza y horas | Nomenclatura correcta por marca
+
+══════════════════════════════
+FORMATO OBLIGATORIO — COMPLETAR SIEMPRE TODO:
+══════════════════════════════
+
+PERFIL DEL PIE: [tipo de pie, medidas clave — 2 líneas]
+
+ANÁLISIS FUNCIONAL: [comportamiento del pie, qué necesita — 2 líneas]
+
+ALERTAS: [máximo 2 puntos. Si no hay: "Sin alertas críticas."]
+
+RECOMENDACIONES TOP 3:
+
+1. [Marca Modelo] — [Talla] [Ancho] [Dureza/Cambrion]:
+Justificación técnica: [1 línea]
+Qué problema resuelve: [1 línea]
+
+2. [Marca Modelo] — [Talla] [Ancho] [Dureza/Cambrion]:
+Justificación técnica: [1 línea]
+Qué problema resuelve: [1 línea]
+
+3. [Marca Modelo] — [Talla] [Ancho] [Dureza/Cambrion]:
+Justificación técnica: [1 línea]
+Qué problema resuelve: [1 línea]
+
+Tallas otras marcas:
+[Marca Modelo] — [Talla] [Ancho] [Dureza/Cambrion si aplica]
+[una línea por marca NO incluida en TOP 3, TODAS las marcas]
+
+NOTA PROFESIONAL: [1-2 líneas — qué validar presencialmente]
+
+REGLAS:
+- COMPLETAR SIEMPRE las 3 recomendaciones y TODAS las otras marcas
+- Cada marca usa su propia nomenclatura de dureza
+- Sin ## ni *** ni introducciones ni saludos
+- Máximo 300 palabras
+- Español, tono técnico y profesional`;
+/* ── KEY ── */
+function getKey(){return localStorage.getItem(API_KEY_STORE)||'';}
+function saveKey(){
+  const k=document.getElementById('keyInput').value.trim();
+  if(!k){alert('Ingresa una API Key válida.');return;}
+  localStorage.setItem(API_KEY_STORE,k);
+  document.getElementById('keyModal').style.display='none';
+  greet();
+}
+function showKeyModal(){
+  document.getElementById('keyInput').value=getKey();
+  document.getElementById('keyModal').style.display='flex';
+}
+function greet(){
+  addAIMsg('¡Hola! Soy **Sofía**, tu asesora experta en puntas de DanceSpot. 🩰\n\nCompleta el formulario a la izquierda con las medidas de la bailarina, adjunta fotos del pie si tienes, y haz clic en **Analizar con Sofía**. Te doy el análisis completo con tallas exactas por marca.\n\nTambién puedes preguntarme lo que necesites aquí en el chat.');
+}
+
+/* ── MODE SWITCH ── */
+function switchMode(m){
+  document.getElementById('mode-form').style.display=m==='form'?'flex':'none';
+  document.getElementById('mode-upload').style.display=m==='upload'?'flex':'none';
+  document.getElementById('tab-form-btn').classList.toggle('active',m==='form');
+  document.getElementById('tab-upload-btn').classList.toggle('active',m==='upload');
+}
+function showPaste(){
+  const s=document.getElementById('pasteSection');
+  s.style.display=s.style.display==='none'?'block':'none';
+}
+
+/* ── PHOTOS (form mode) ── */
+function onPhotosAdd(input){
+  Array.from(input.files||[]).forEach(file=>{
+    const r=new FileReader();
+    r.onload=e=>{formPhotos.push({name:file.name,type:file.type||'image/jpeg',data:e.target.result.split(',')[1],dataUrl:e.target.result});renderPhotoGrid();};
+    r.readAsDataURL(file);
+  });
+  input.value='';
+}
+function removePhoto(i){formPhotos.splice(i,1);renderPhotoGrid();}
+function renderPhotoGrid(){
+  document.getElementById('photoGrid').innerHTML=formPhotos.map((p,i)=>`
+    <div class="photo-thumb">
+      <img src="${p.dataUrl}" alt="${p.name}"/>
+      <button class="rm" onclick="removePhoto(${i})">✕</button>
+    </div>`).join('');
+}
+
+/* ── UPLOADS (upload mode) ── */
+function onPdfAdd(input){
+  Array.from(input.files||[]).forEach(file=>{
+    const r=new FileReader();
+    r.onload=e=>{uploadPending.push({kind:'pdf',name:file.name,data:e.target.result.split(',')[1],type:'application/pdf'});renderUploadPending();};
+    r.readAsDataURL(file);
+  });input.value='';
+}
+function onFormImgAdd(input){
+  Array.from(input.files||[]).forEach(file=>{
+    const r=new FileReader();
+    r.onload=e=>{uploadPending.push({kind:'form-img',name:file.name,data:e.target.result.split(',')[1],type:file.type||'image/jpeg',dataUrl:e.target.result});renderUploadPending();};
+    r.readAsDataURL(file);
+  });input.value='';
+}
+function onPieImgAdd(input){
+  Array.from(input.files||[]).forEach(file=>{
+    const r=new FileReader();
+    r.onload=e=>{piePhotosUpload.push({name:file.name,type:file.type||'image/jpeg',data:e.target.result.split(',')[1],dataUrl:e.target.result});renderPieGrid();};
+    r.readAsDataURL(file);
+  });input.value='';
+}
+function removeUpload(i){uploadPending.splice(i,1);renderUploadPending();}
+function removePieUpload(i){piePhotosUpload.splice(i,1);renderPieGrid();}
+function renderUploadPending(){
+  document.getElementById('uploadPendingList').innerHTML=uploadPending.map((p,i)=>`
+    <span class="badge-img">${p.kind==='pdf'?'📄':'🖼'} ${escHtml(p.name)} <button onclick="removeUpload(${i})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:0;margin-left:3px">✕</button></span>`).join('');
+}
+function renderPieGrid(){
+  document.getElementById('piePhotoGrid').innerHTML=piePhotosUpload.map((p,i)=>`
+    <div class="photo-thumb">
+      <img src="${p.dataUrl}" alt="${p.name}"/>
+      <button class="rm" onclick="removePieUpload(${i})">✕</button>
+    </div>`).join('');
+}
+
+/* ── SEND FORM ── */
+async function sendForm(){
+  const key=getKey();if(!key){showKeyModal();return;}
+  if(isThinking)return;
+  const nombre=document.getElementById('f-nombre').value.trim();
+  const talla=document.getElementById('f-talla').value.trim();
+  if(!nombre&&!talla){alert('Por favor ingresa al menos el nombre o la talla de la bailarina.');return;}
+
+  const datos={
+    nombre:nombre||'No indicado',
+    edad:document.getElementById('f-edad').value.trim()||'No indicada',
+    whatsapp:document.getElementById('f-ws').value.trim()||'No indicado',
+    academia:document.getElementById('f-academia').value.trim()||'No indicada',
+    ciudad:document.getElementById('f-ciudad').value.trim()||'No indicada',
+    nivel:document.getElementById('f-nivel').value||'No indicado',
+    talla:talla||'No indicada',
+    tipoPie:document.getElementById('f-tipo').value||'No definido',
+    largoDerecho:document.getElementById('f-ld').value.trim()||'No indicado',
+    largoIzquierdo:document.getElementById('f-li').value.trim()||'No indicado',
+    anchoDerecho:document.getElementById('f-ad').value.trim()||'No indicado',
+    anchoIzquierdo:document.getElementById('f-ai').value.trim()||'No indicado',
+    empeine:document.getElementById('f-empeine').value||'No definido',
+    fuerza:document.getElementById('f-fuerza').value||'No definida',
+    estabilidad:document.getElementById('f-estab').value||'No definida',
+    tobillo:document.getElementById('f-tobillo').value||'No definido',
+    uso:document.getElementById('f-uso').value||'Primeras puntas',
+    marcas:document.getElementById('f-marcas').value.trim()||'No indicadas',
+    conejos:document.getElementById('f-conejos').value.trim()||'No indicado',
+    problemas:document.getElementById('f-problemas').value.trim()||'Ninguno',
+    obs:document.getElementById('f-obs').value.trim()||'Ninguna',
+  };
+
+  const txt=`FORMULARIO DE MEDICIÓN DANCESPOT
+
+Nombre: ${datos.nombre}
+Edad: ${datos.edad}
+WhatsApp: ${datos.whatsapp}
+Academia: ${datos.academia}
+Ciudad: ${datos.ciudad}
+Nivel de ballet: ${datos.nivel}
+Horas práctica/semana: ${datos.horas}
+
+MEDIDAS DEL PIE
+Talla nacional: ${datos.talla}
+Tipo de pie: ${datos.tipoPie}
+Largo pie derecho: ${datos.largoDerecho} cm
+Largo pie izquierdo: ${datos.largoIzquierdo} cm
+Ancho pie derecho: ${datos.anchoDerecho} cm
+Ancho pie izquierdo: ${datos.anchoIzquierdo} cm
+Empeine: ${datos.empeine}
+Fuerza del pie: ${datos.fuerza}
+Estabilidad en relevé: ${datos.estabilidad}
+Control de tobillo: ${datos.tobillo}
+
+HISTORIAL DE PUNTAS
+¿Primeras puntas o ya usa?: ${datos.uso}
+Marcas usadas/preferidas: ${datos.marcas}
+Protectores/conejos: ${datos.conejos}
+Problemas reportados: ${datos.problemas}
+Observaciones: ${datos.obs}
+
+${formPhotos.length>0?`Se adjuntan ${formPhotos.length} foto(s) del pie para análisis visual.`:''}
+
+Por favor genera el análisis completo con todas las marcas y tallas calculadas, TOP 3 recomendaciones y observaciones clínicas.`;
+
+  // Build content
+  const content=[];
+  formPhotos.forEach(p=>{
+    content.push({type:'image',source:{type:'base64',media_type:p.type,data:p.data}});
+  });
+  if(formPhotos.length>0) content.push({type:'text',text:'[Fotos del pie de la bailarina adjuntas arriba para análisis visual]'});
+  content.push({type:'text',text:txt});
+
+  // Show user message
+  hideWelcome();
+  const chat=document.getElementById('chat');
+  const div=document.createElement('div');div.className='msg user';
+  let imgHtml='';
+  if(formPhotos.length>0) imgHtml=`<div class="img-grid">${formPhotos.map(p=>`<img src="${p.dataUrl}" alt="${p.name}"/>`).join('')}</div>`;
+  div.innerHTML=`<div class="avatar user">Tú</div><div class="bubble user"><p>📋 Formulario de <strong>${escHtml(datos.nombre)}</strong> enviado para análisis${formPhotos.length>0?' con '+formPhotos.length+' foto(s) del pie':''}</p>${imgHtml}</div>`;
+  chat.appendChild(div);chat.scrollTop=chat.scrollHeight;
+
+  await callClaude(content);
+}
+
+/* ── SEND UPLOADS ── */
+async function sendUploads(){
+  const key=getKey();if(!key){showKeyModal();return;}
+  if(isThinking)return;
+  if(!uploadPending.length&&!piePhotosUpload.length){
+    alert('Sube al menos un archivo o foto antes de analizar.');return;
+  }
+  const content=[];
+  uploadPending.forEach(p=>{
+    if(p.kind==='pdf') content.push({type:'document',source:{type:'base64',media_type:'application/pdf',data:p.data}});
+    else{content.push({type:'image',source:{type:'base64',media_type:p.type,data:p.data}});content.push({type:'text',text:'[Foto del formulario de medición — extrae todos los datos visibles]'});}
+  });
+  piePhotosUpload.forEach(p=>{
+    content.push({type:'image',source:{type:'base64',media_type:p.type,data:p.data}});
+    content.push({type:'text',text:'[Foto del pie de la bailarina para análisis visual]'});
+  });
+  content.push({type:'text',text:'Por favor analiza toda la información, extrae los datos del formulario, analiza las fotos del pie si las hay, y genera el análisis completo con tallas por marca y TOP 3 recomendaciones.'});
+
+  hideWelcome();
+  const chat=document.getElementById('chat');
+  const div=document.createElement('div');div.className='msg user';
+  let badges=uploadPending.map(p=>`<span class="badge-img">${p.kind==='pdf'?'📄':'🖼'} ${escHtml(p.name)}</span>`).join('');
+  let imgs=piePhotosUpload.length>0?`<div class="img-grid">${piePhotosUpload.map(p=>`<img src="${p.dataUrl}" alt="${p.name}"/>`).join('')}</div>`:'';
+  div.innerHTML=`<div class="avatar user">Tú</div><div class="bubble user"><p>Archivos enviados para análisis</p><div style="margin-top:4px">${badges}</div>${imgs}</div>`;
+  chat.appendChild(div);chat.scrollTop=chat.scrollHeight;
+
+  await callClaude(content);
+}
+
+/* ── PASTE ── */
+function addPasteToChat(){
+  const txt=document.getElementById('pasteArea').value.trim();
+  if(!txt){alert('Pega las respuestas del formulario primero.');return;}
+  const content=[{type:'text',text:'FORMULARIO DE MEDICIÓN (pegado):\n\n'+txt+'\n\nGenera el análisis completo con tallas por marca y TOP 3 recomendaciones.'}];
+  hideWelcome();
+  addUserMsg('📋 Formulario pegado enviado para análisis');
+  document.getElementById('pasteArea').value='';
+  callClaude(content);
+}
+
+/* ── CHAT FREE ── */
+async function sendChat(){
+  const key=getKey();if(!key){showKeyModal();return;}
+  if(isThinking)return;
+  const inp=document.getElementById('inp');
+  const text=inp.value.trim();if(!text)return;
+  inp.value='';inp.style.height='auto';
+  addUserMsg(text);
+  await callClaude([{type:'text',text}]);
+}
+
+function quickSend(text){document.getElementById('inp').value=text;sendChat();}
+
+/* ── KB CONTEXT BUILDER ── */
+function buildKbContext(){
+  if(!kbLoaded || (!knowledgeBase.casos.length && !knowledgeBase.notas.length)) return '';
+  let ctx='\n\nCASOS REALES DANCESPOT (validar por morfología — NO buscar por nombre):\n';
+  ctx+='Usa estos casos para VALIDAR tus cálculos. Si hay morfología similar, ajusta tu recomendación hacia esa talla.\n\n';
+  knowledgeBase.casos.forEach(c=>{
+    const tipoPie=c.tipoPie||'';
+    const tallaZap=c.tallaZapato||'';
+    const anchoD=c.anchoDerecho||'';
+    const empeine=c.empeineDer||'';
+    const marca=c.marca||'';
+    const modelo=c.modelo||'';
+    const talla=c.talla||'';
+    const width=c.width||'';
+    const shank=c.shank||'';
+    if(marca&&talla){
+      ctx+=`CASO: pie ${tipoPie||'?'}, EU${tallaZap||'?'}, ancho ${anchoD||'?'}cm, empeine ${empeine||'?'} → ${marca} ${modelo} T${talla} ${width} ${shank}\n`;
+    }
+  });
+  if(knowledgeBase.notas&&knowledgeBase.notas.length){
+    ctx+='\nNOTAS DANCESPOT:\n';
+    knowledgeBase.notas.forEach(n=>{
+      if(n.observaciones_dancespot) ctx+=`- ${n.marca} ${n.modelo}: ${n.observaciones_dancespot}\n`;
+    });
+  }
+  ctx+='\nREGLA: Si la bailarina tiene características similares a un caso real, usa esa talla como referencia principal.\n';
+  return ctx;
+}
+
+/* ── CORE API CALL ── */
+async function callClaude(userContent){
+  const key=getKey();
+  history.push({role:'user',content:userContent});
+  isThinking=true;
+  document.getElementById('sendBtn').disabled=true;
+  document.getElementById('analyzeBtn').disabled=true;
+  showThinking();
+  // Use KB if already loaded, don't block analysis waiting for it
+  const systemWithKB = SYSTEM + buildKbContext();
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:MODEL,max_tokens:1200,system:systemWithKB,messages:history})
+    });
+    if(!resp.ok){const err=await resp.json().catch(()=>({}));throw new Error(err.error?.message||'Error '+resp.status);}
+    const data=await resp.json();
+    const reply=data.content.map(c=>c.text||'').join('');
+    history.push({role:'assistant',content:reply});
+    if(history.length>20)history=history.slice(-20);
+    hideThinking();addAIMsg(reply);
+    lastAnalysis=reply;
+    // Also capture form data if available from form fields
+    if(!lastFormData.nombre){
+      lastFormData={
+        nombre:document.getElementById('f-nombre')?document.getElementById('f-nombre').value:'',
+        edad:document.getElementById('f-edad')?document.getElementById('f-edad').value:'',
+        whatsapp:document.getElementById('f-ws')?document.getElementById('f-ws').value:'',
+        academia:document.getElementById('f-academia')?document.getElementById('f-academia').value:'',
+        ciudad:document.getElementById('f-ciudad')?document.getElementById('f-ciudad').value:'',
+        nivel:document.getElementById('f-nivel')?document.getElementById('f-nivel').value:'',
+        horas:document.getElementById('f-horas')?document.getElementById('f-horas').value:'',
+        talla:document.getElementById('f-talla')?document.getElementById('f-talla').value:'',
+        tipoPie:document.getElementById('f-tipo')?document.getElementById('f-tipo').value:'',
+        largoDerecho:document.getElementById('f-ld')?document.getElementById('f-ld').value:'',
+        largoIzquierdo:document.getElementById('f-li')?document.getElementById('f-li').value:'',
+        anchoDerecho:document.getElementById('f-ad')?document.getElementById('f-ad').value:'',
+        anchoIzquierdo:document.getElementById('f-ai')?document.getElementById('f-ai').value:'',
+        empeine:document.getElementById('f-empeine')?document.getElementById('f-empeine').value:'',
+        fuerza:document.getElementById('f-fuerza')?document.getElementById('f-fuerza').value:'',
+        estabilidad:document.getElementById('f-estab')?document.getElementById('f-estab').value:'',
+        tobillo:document.getElementById('f-tobillo')?document.getElementById('f-tobillo').value:'',
+        uso:document.getElementById('f-uso')?document.getElementById('f-uso').value:'',
+        marcas:document.getElementById('f-marcas')?document.getElementById('f-marcas').value:'',
+        conejos:document.getElementById('f-conejos')?document.getElementById('f-conejos').value:'',
+        problemas:document.getElementById('f-problemas')?document.getElementById('f-problemas').value:'',
+        obs:document.getElementById('f-obs')?document.getElementById('f-obs').value:'',
+      };
+    }
+    showReportBar();
+  }catch(err){
+    hideThinking();
+    addAIMsg('Lo siento, hubo un error: '+err.message+'\n\nVerifica que tu API Key sea correcta y tenga créditos disponibles.');
+  }
+  isThinking=false;
+  document.getElementById('sendBtn').disabled=false;
+  document.getElementById('analyzeBtn').disabled=false;
+}
+
+/* ── CHAT UI ── */
+function hideWelcome(){const w=document.getElementById('welcome');if(w)w.remove();}
+function addUserMsg(text){
+  hideWelcome();
+  const chat=document.getElementById('chat');
+  const div=document.createElement('div');div.className='msg user';
+  div.innerHTML=`<div class="avatar user">Tú</div><div class="bubble user"><p>${escHtml(text)}</p></div>`;
+  chat.appendChild(div);chat.scrollTop=chat.scrollHeight;
+}
+function addAIMsg(text){
+  hideWelcome();
+  const chat=document.getElementById('chat');
+  const div=document.createElement('div');div.className='msg';
+  const formatted=fmtAI(text);
+  const msgId='msg_'+Date.now();
+  // Check if long response - add expand button
+  div.innerHTML=`<div class="avatar ai">S</div><div class="bubble ai" id="${msgId}">${formatted}</div>`;
+  chat.appendChild(div);chat.scrollTop=chat.scrollHeight;
+}
+
+function toggleExpand(id){
+  const el=document.getElementById(id);
+  const btn=document.getElementById('btn_'+id);
+  if(!el)return;
+  if(el.style.maxHeight&&el.style.maxHeight!=='none'){
+    el.style.maxHeight='none';el.style.overflowY='visible';
+    if(btn)btn.textContent='↑ Colapsar';
+  } else {
+    el.style.maxHeight='420px';el.style.overflowY='auto';
+    if(btn)btn.textContent='↕ Ver análisis completo';
+    el.scrollTop=0;
+  }
+}
+function showThinking(){
+  hideWelcome();
+  const chat=document.getElementById('chat');
+  const div=document.createElement('div');div.className='thinking-wrap';div.id='thinking';
+  div.innerHTML=`<div class="avatar ai">S</div><div class="thinking">Analizando <span><i></i><i></i><i></i></span></div>`;
+  chat.appendChild(div);chat.scrollTop=chat.scrollHeight;
+}
+function hideThinking(){const t=document.getElementById('thinking');if(t)t.remove();}
+
+function fmtAI(text){
+  let h=escHtml(text);
+  h=h.replace(/\*\*([^*\n]+)\*\*/g,'<strong>$1</strong>');
+  h=h.replace(/\*([^*\n]+)\*/g,'<em>$1</em>');
+  h=h.replace(/^#{1,3} (.+)$/gm,'<h3>$1</h3>');
+  h=h.replace(/^[-•] (.+)$/gm,'<li>$1</li>');
+  const parts=h.split('\n\n');
+  return parts.map(p=>{
+    p=p.trim();if(!p)return'';
+    if(p.startsWith('<h3>'))return p;
+    if(p.includes('<li>'))return'<ul>'+p+'</ul>';
+    return'<p>'+p.replace(/\n/g,'<br>')+'</p>';
+  }).filter(Boolean).join('');
+}
+function escHtml(t){return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function clearChat(){
+  if(!confirm('¿Iniciar nueva sesión?'))return;
+  history=[];
+  const chat=document.getElementById('chat');chat.innerHTML='';
+  const w=document.createElement('div');w.id='welcome';w.className='welcome';
+  w.innerHTML=`<div class="welcome-logo">🩰</div><h2>Nueva sesión</h2><p>Completa el formulario y haz clic en Analizar con Sofía.</p>`;
+  chat.appendChild(w);greet();
+}
+
+/* ── REPORT ── */
+let lastFormData={};
+let lastAnalysis='';
+
+function buildReport(){
+  const d=lastFormData;
+  const sep='='.repeat(56);
+  const L=[sep,'DANCESPOT - Reporte de Medicion Virtual de Puntas',sep,
+    'Fecha: '+new Date().toLocaleString('es-CO'),''];
+
+  // Only include fields that have data
+  const hasFormData = d.nombre||d.talla||d.largoDerecho||d.anchoDerecho;
+  if(hasFormData){
+    L.push('DATOS DE LA BAILARINA');
+    if(d.nombre)    L.push('Nombre        : '+d.nombre);
+    if(d.edad)      L.push('Edad          : '+d.edad);
+    if(d.whatsapp)  L.push('WhatsApp      : '+d.whatsapp);
+    if(d.academia)  L.push('Academia      : '+d.academia);
+    if(d.ciudad)    L.push('Ciudad        : '+d.ciudad);
+    if(d.nivel)     L.push('Nivel         : '+d.nivel);
+    if(d.horas)     L.push('Horas/semana  : '+d.horas);
+    L.push('');
+    L.push('MEDIDAS DEL PIE');
+    if(d.talla)          L.push('Talla nacional     : '+d.talla);
+    if(d.tipoPie)        L.push('Tipo de pie        : '+d.tipoPie);
+    if(d.largoDerecho)   L.push('Largo pie derecho  : '+d.largoDerecho+' cm');
+    if(d.largoIzquierdo) L.push('Largo pie izquierdo: '+d.largoIzquierdo+' cm');
+    if(d.anchoDerecho)   L.push('Ancho pie derecho  : '+d.anchoDerecho+' cm');
+    if(d.anchoIzquierdo) L.push('Ancho pie izquierdo: '+d.anchoIzquierdo+' cm');
+    if(d.empeine)        L.push('Empeine            : '+d.empeine);
+    if(d.fuerza)         L.push('Fuerza del pie     : '+d.fuerza);
+    if(d.estabilidad)    L.push('Estabilidad releve : '+d.estabilidad);
+    if(d.tobillo)        L.push('Control de tobillo : '+d.tobillo);
+    L.push('');
+    L.push('HISTORIAL DE PUNTAS');
+    if(d.uso)      L.push('Uso de puntas      : '+d.uso);
+    if(d.marcas)   L.push('Marcas preferidas  : '+d.marcas);
+    if(d.conejos)  L.push('Conejos/protectores: '+d.conejos);
+    if(d.problemas&&d.problemas!=='Ninguno') L.push('Problemas          : '+d.problemas);
+    if(d.obs&&d.obs!=='Ninguna') L.push('Observaciones      : '+d.obs);
+    L.push('');
+  }
+
+  L.push(sep);
+  L.push('ANALISIS Y RECOMENDACIONES - SOFIA (DanceSpot IA)');
+  L.push(sep);
+  L.push('');
+  // Clean the analysis text - remove markdown symbols for plain text
+  const cleanAnalysis=(lastAnalysis||'Sin analisis generado aun')
+    .replace(/#{1,3} /g,'')
+    .replace(/\*\*([^*]+)\*\*/g,'$1')
+    .replace(/\*([^*]+)\*/g,'$1')
+    .replace(/^- /gm,'• ');
+  L.push(cleanAnalysis);
+  L.push('');
+  L.push(sep);
+  L.push('Generado por DanceSpot - Sistema de Medicion Virtual de Puntas');
+  L.push('Validar por prueba presencial o videollamada.');
+  return L.join('\n');
+}
+
+function showReportBar(){
+  document.getElementById('reportBar').classList.add('visible');
+}
+
+function downloadReport(){
+  const txt=buildReport();
+  const sn=(lastFormData.nombre||'bailarina').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  const name='dancespot-'+sn+'-'+new Date().toISOString().slice(0,10)+'.txt';
+  const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=name;
+  document.body.appendChild(a);a.click();
+  setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},1000);
+}
+
+function copyReport(){
+  const txt=buildReport();
+  const done=document.getElementById('copyDone');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(()=>{done.style.display='inline';setTimeout(()=>done.style.display='none',2500);});
+  } else {
+    const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);
+    ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    done.style.display='inline';setTimeout(()=>done.style.display='none',2500);
+  }
+}
+
+window.onload=function(){
+  const k=getKey();
+  if(k){
+    document.getElementById('keyModal').style.display='none';
+    greet();
+    setTimeout(()=>loadKnowledgeBase(),500); // Load KB async after init
+  } else {
+    document.getElementById('keyInput').value='';
+  }
+};
+</script>
+</body>
+</html>
