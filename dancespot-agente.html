@@ -32,7 +32,6 @@ html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Jost'
 .app{display:grid;grid-template-columns:420px 1fr;height:100vh}
 @media(max-width:1024px){.app{grid-template-columns:1fr;grid-template-rows:auto auto 1fr}}
 
-/* HEADER */
 .hdr{
   grid-column:1/-1;padding:10px 20px;
   display:flex;align-items:center;justify-content:space-between;
@@ -46,10 +45,7 @@ html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Jost'
   background:linear-gradient(135deg,var(--fx),var(--fx-bright));
   display:flex;align-items:center;justify-content:center;font-size:17px;
 }
-.logo-name{
-  font-family:'Jost',sans-serif;font-size:18px;font-weight:700;
-  color:var(--fx-dim);letter-spacing:-.01em;
-}
+.logo-name{font-family:'Jost',sans-serif;font-size:18px;font-weight:700;color:var(--fx-dim);letter-spacing:-.01em;}
 .logo-name span{color:#1a1a1a}
 .logo-sub{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
 .hdr-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
@@ -62,11 +58,9 @@ html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Jost'
 .hdr-btn.active{border-color:var(--fx);color:var(--fx-dim);background:var(--fx-light)}
 .status{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);
   padding:5px 12px;border:1px solid var(--border);border-radius:6px;background:var(--surface2)}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--fx-bright);
-  animation:glow 2s ease-in-out infinite}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--fx-bright);animation:glow 2s ease-in-out infinite}
 @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(176,31,187,.3)}50%{box-shadow:0 0 0 4px rgba(176,31,187,0)}}
 
-/* FORM PANEL */
 .form-panel{
   background:var(--white);border-right:1px solid var(--border);
   border-bottom:2px solid var(--fx);
@@ -86,7 +80,6 @@ html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Jost'
 .panel-content::-webkit-scrollbar{width:4px}
 .panel-content::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
 
-/* FORM FIELDS */
 .fsec{margin-bottom:20px}
 .fsec-title{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   color:var(--fx-dim);margin-bottom:10px;display:flex;align-items:center;gap:6px;
@@ -110,7 +103,6 @@ html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Jost'
   background-repeat:no-repeat;background-position:right 9px center;
   padding-right:26px;appearance:none}
 
-/* PHOTO UPLOAD */
 .photo-drop{
   border:2px dashed var(--border2);border-radius:8px;
   background:var(--surface2);padding:14px;text-align:center;
@@ -126,7 +118,6 @@ html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Jost'
   background:var(--fx);border:none;border-radius:50%;color:#fff;
   font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 
-/* ANALYZE BUTTON */
 .analyze-btn{
   margin:12px 16px;
   background:linear-gradient(135deg,var(--fx-dim),var(--fx-bright));
@@ -141,7 +132,6 @@ html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Jost'
 .analyze-btn:active{transform:scale(.98)}
 .analyze-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
 
-/* UPLOAD MODES */
 .upload-modes{display:flex;flex-direction:column;gap:8px;padding:4px 0}
 .umode{
   background:var(--surface2);border:1px solid var(--border);border-radius:8px;
@@ -159,13 +149,11 @@ html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Jost'
 .paste-area:focus{border-color:var(--fx);box-shadow:0 0 0 3px var(--fx-glow)}
 .paste-area::placeholder{color:var(--muted2)}
 
-/* CHAT PANEL */
 .chat-panel{display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
 .chat{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px}
 .chat::-webkit-scrollbar{width:4px}
 .chat::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
 
-/* MESSAGES */
 .msg{display:flex;gap:10px;animation:fadeUp .25s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .msg.user{flex-direction:row-reverse}
@@ -195,13 +183,11 @@ html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Jost'
 .img-grid{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
 .img-grid img{width:72px;height:72px;object-fit:cover;border-radius:6px;border:1px solid var(--border)}
 
-/* ATTACH BADGES */
 .attach-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600;margin:2px}
 .badge-pdf{background:#e8f0fe;color:#1a56c9;border:1px solid #c5d5f9}
 .badge-img{background:var(--fx-light);color:var(--fx-dim);border:1px solid rgba(176,31,187,0.2)}
 .badge-txt{background:#e6f4ea;color:#1a6b3a;border:1px solid #b7dfbf}
 
-/* THINKING */
 .thinking-wrap{display:flex;gap:10px}
 .thinking{display:flex;align-items:center;gap:8px;padding:10px 14px;
   background:var(--white);border:1px solid var(--border);border-left:3px solid var(--fx);
@@ -212,7 +198,6 @@ html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Jost'
 .thinking span i:nth-child(2){animation-delay:.15s}.thinking span i:nth-child(3){animation-delay:.3s}
 @keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
 
-/* WELCOME */
 .welcome{text-align:center;padding:32px 20px;max-width:480px;margin:auto}
 .welcome-logo{width:64px;height:64px;border-radius:50%;margin:0 auto 14px;
   background:linear-gradient(135deg,var(--fx-dim),var(--fx-bright));
@@ -221,16 +206,6 @@ html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Jost'
 .welcome h2{font-family:'Jost',sans-serif;font-size:22px;font-weight:700;
   color:var(--cream);margin-bottom:6px;letter-spacing:-.01em}
 .welcome p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px}
-.upload-options{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
-.upload-card{
-  background:var(--white);border:1px solid var(--border);border-radius:8px;
-  padding:14px 8px;cursor:pointer;transition:all .2s;text-align:center;
-  box-shadow:0 2px 6px rgba(0,0,0,0.04);
-}
-.upload-card:hover{border-color:var(--fx);background:var(--fx-light);box-shadow:0 4px 12px rgba(176,31,187,0.12)}
-.uc-icon{font-size:22px;margin-bottom:5px}
-.uc-label{font-size:11px;font-weight:700;color:var(--cream);margin-bottom:1px}
-.uc-sub{font-size:10px;color:var(--muted)}
 .quick-btns{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
 .qbtn{background:var(--white);border:1px solid var(--border);color:var(--muted);
   padding:7px 12px;border-radius:6px;font-size:11px;cursor:pointer;
@@ -238,7 +213,6 @@ html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Jost'
   box-shadow:0 1px 4px rgba(0,0,0,0.04)}
 .qbtn:hover{border-color:var(--fx);color:var(--fx-dim);background:var(--fx-light)}
 
-/* INPUT AREA */
 .chat-input{border-top:1px solid var(--border);background:var(--white);padding:10px 14px;flex-shrink:0;
   box-shadow:0 -2px 8px rgba(0,0,0,0.04)}
 .input-row{display:flex;align-items:flex-end;gap:8px}
@@ -259,7 +233,6 @@ textarea#inp::placeholder{color:var(--muted2)}
 .send-btn:disabled{opacity:.35;cursor:not-allowed;box-shadow:none}
 .hint{font-size:10px;color:var(--muted2);text-align:center;margin-top:5px}
 
-/* REPORT BAR */
 .report-bar{display:none;border-top:1px solid var(--border);background:var(--surface2);
   padding:8px 14px;flex-shrink:0;flex-direction:row;align-items:center;
   justify-content:space-between;gap:8px;flex-wrap:wrap}
@@ -274,26 +247,6 @@ textarea#inp::placeholder{color:var(--muted2)}
 .rbtn-cp{background:var(--white);border:1px solid var(--border2);color:var(--cream)}
 .rbtn-cp:hover{border-color:var(--fx);color:var(--fx-dim)}
 .copy-done{font-size:10px;color:var(--success);font-weight:600;padding:0 6px;display:none}
-
-/* MODALS */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);
-  display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
-.modal-box{background:var(--white);border:1px solid var(--border);
-  border-top:3px solid var(--fx);border-radius:10px;padding:28px;
-  max-width:420px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,0.12)}
-.modal-box h3{font-family:'Jost',sans-serif;font-size:20px;font-weight:700;
-  color:var(--fx-dim);margin-bottom:6px}
-.modal-box p{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6}
-.modal-box input{width:100%;background:var(--surface2);border:1px solid var(--border);
-  border-radius:6px;padding:10px 12px;color:var(--cream);
-  font-family:monospace;font-size:11px;outline:none;margin-bottom:12px;
-  transition:border-color .15s}
-.modal-box input:focus{border-color:var(--fx);box-shadow:0 0 0 3px var(--fx-glow)}
-.modal-save{width:100%;background:linear-gradient(135deg,var(--fx-dim),var(--fx-bright));
-  border:none;border-radius:8px;padding:11px;color:#fff;
-  font-family:'Jost',sans-serif;font-size:14px;font-weight:700;cursor:pointer;
-  box-shadow:0 4px 14px rgba(176,31,187,0.25);transition:opacity .2s}
-.modal-save:hover{opacity:.88}
 
 .txt-modal{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;
   align-items:center;justify-content:center;z-index:200;padding:20px}
@@ -318,7 +271,6 @@ textarea#inp::placeholder{color:var(--muted2)}
   font-family:'Jost',sans-serif;font-size:13px;cursor:pointer;transition:all .2s}
 .txt-cancel:hover{border-color:var(--fx);color:var(--fx-dim)}
 
-/* PENDING */
 .pending-list{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:7px}
 .pending-item{display:flex;align-items:center;gap:5px;padding:4px 9px;
   border-radius:6px;font-size:10px;border:1px solid var(--border);
@@ -333,16 +285,6 @@ textarea#inp::placeholder{color:var(--muted2)}
 </style>
 </head>
 <body>
-
-<!-- KEY MODAL -->
-<div class="modal-overlay" id="keyModal">
-  <div class="modal-box">
-    <h3>DanceSpot</h3>
-    <p>Ingresa tu API Key de Claude para activar a Sofía, tu asesora experta en zapatillas de punta.</p>
-    <input type="password" id="keyInput" placeholder="sk-ant-api03-..."/>
-    <button class="modal-save" onclick="saveKey()">🩰 Activar Sofía</button>
-  </div>
-</div>
 
 <div class="app">
 
@@ -359,7 +301,6 @@ textarea#inp::placeholder{color:var(--muted2)}
       <button class="hdr-btn active" id="tab-form-btn" onclick="switchMode('form')">📋 Formulario</button>
       <button class="hdr-btn" id="tab-upload-btn" onclick="switchMode('upload')">📎 Subir archivos</button>
       <button class="hdr-btn" onclick="clearChat()">🗑 Nueva sesión</button>
-      <button class="hdr-btn" onclick="showKeyModal()">🔑 Key</button>
       <button class="hdr-btn" onclick="loadKnowledgeBase(true)">🔄 KB</button>
       <div class="status"><div class="dot"></div><span id="kbStatus">Cargando KB...</span></div>
     </div>
@@ -368,7 +309,6 @@ textarea#inp::placeholder{color:var(--muted2)}
   <!-- LEFT: FORM PANEL -->
   <div class="form-panel">
 
-    <!-- FORM MODE -->
     <div id="mode-form" style="display:flex;flex-direction:column;flex:1;overflow:hidden">
       <div class="panel-content" style="flex:1">
 
@@ -476,9 +416,8 @@ textarea#inp::placeholder{color:var(--muted2)}
         </div>
 
       </div>
-
     </div>
-    <!-- STICKY ANALYZE BUTTON - always visible -->
+
     <div style="padding:12px 16px;border-top:2px solid var(--fx);background:var(--white);flex-shrink:0;">
       <button class="analyze-btn" id="analyzeBtn" onclick="sendForm()" style="margin:0;width:100%">
         🩰 Analizar con Sofía
@@ -489,7 +428,7 @@ textarea#inp::placeholder{color:var(--muted2)}
     <div id="mode-upload" style="display:none;flex-direction:column;flex:1;overflow:hidden">
       <div class="panel-content" style="flex:1">
         <div style="margin-bottom:14px">
-          <div style="font-family:'Dancing Script',cursive;font-size:16px;color:var(--fx-soft);margin-bottom:8px">Subir formulario existente</div>
+          <div style="font-size:16px;color:var(--fx-soft);margin-bottom:8px">Subir formulario existente</div>
           <div class="upload-modes">
             <div class="umode" onclick="document.getElementById('pdfIn').click()">
               <div class="umode-icon">📄</div>
@@ -517,7 +456,6 @@ textarea#inp::placeholder{color:var(--muted2)}
           <input id="formImgIn" type="file" multiple accept="image/*,.heic,.heif" style="display:none" onchange="onFormImgAdd(this)"/>
         </div>
 
-        <!-- PASTE -->
         <div id="pasteSection" style="display:none;margin-top:8px">
           <div style="font-size:10px;color:var(--muted);margin-bottom:6px">Pega aquí las respuestas del formulario</div>
           <textarea class="paste-area" id="pasteArea" placeholder="Nombre: ...
@@ -525,17 +463,15 @@ Edad: ...
 Talla: ...
 Largo pie derecho: ...
 Ancho pie derecho: ..."></textarea>
-          <button onclick="addPasteToChat()" style="width:100%;background:linear-gradient(135deg,var(--fx),var(--fx-bright));border:none;border-radius:8px;padding:10px;color:#fff;font-family:'Dancing Script',cursive;font-size:17px;font-weight:700;cursor:pointer;box-shadow:0 0 12px var(--fx-glow)">
+          <button onclick="addPasteToChat()" style="width:100%;background:linear-gradient(135deg,var(--fx),var(--fx-bright));border:none;border-radius:8px;padding:10px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;">
             Enviar a Sofía
           </button>
         </div>
 
-        <!-- PENDING UPLOADS -->
         <div id="uploadPendingList" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:5px"></div>
 
-        <!-- ALSO ATTACH PIE PHOTOS -->
         <div style="margin-top:14px">
-          <div style="font-family:'Dancing Script',cursive;font-size:16px;color:var(--fx-soft);margin-bottom:8px">También adjuntar fotos del pie</div>
+          <div style="font-size:16px;color:var(--fx-soft);margin-bottom:8px">También adjuntar fotos del pie</div>
           <div class="photo-drop" onclick="document.getElementById('pieImgIn').click()">
             <input id="pieImgIn" type="file" multiple accept="image/*,.heic,.heif" style="display:none" onchange="onPieImgAdd(this)"/>
             <div class="photo-drop-lbl">📸 Fotos del pie</div>
@@ -567,7 +503,6 @@ Ancho pie derecho: ..."></textarea>
       </div>
     </div>
 
-    <!-- REPORT BAR -->
     <div class="report-bar" id="reportBar">
       <span class="report-bar-label">✦ Reporte listo</span>
       <div class="report-btns">
@@ -592,38 +527,31 @@ Ancho pie derecho: ..."></textarea>
 </div>
 
 <script>
-const API_KEY_STORE='ds_sofia2_key';
 const MODEL='claude-sonnet-4-6';
 const KB_URL='https://script.google.com/macros/s/AKfycbyIxYU_lCgoo52mM59r66Kjp1AkkF765sWmuohngKqLrQwcjzTv4MKFAkh3X4LdbeUk/exec';
+const PROXY_URL='/.netlify/functions/claude-proxy';
 let history=[],isThinking=false;
 let knowledgeBase={casos:[],stock:[],notas:[]};
-let kbLoaded=false;
-let kbLoadTime=null;
+let kbLoaded=false,kbLoadTime=null;
 
-// ── KNOWLEDGE BASE LOADER ──────────────────────────────
-function showKbStatus(msg, ok=false){
+function showKbStatus(msg,ok=false){
   const el=document.getElementById('kbStatus');
   if(el){el.textContent=msg;el.style.color=ok?'#4ade80':'var(--fx-soft)';}
 }
 
 async function loadKnowledgeBase(force=false){
   const now=Date.now();
-  if(!force && kbLoaded && kbLoadTime && (now-kbLoadTime)<600000) return;
+  if(!force&&kbLoaded&&kbLoadTime&&(now-kbLoadTime)<600000)return;
   showKbStatus('⏳ Cargando KB...');
-  return new Promise(async (resolve)=>{
-
+  return new Promise(async(resolve)=>{
     function processData(data){
       if(data&&data.ok){
         knowledgeBase.casos=data.casos||[];
         knowledgeBase.notas=data.notas||[];
         kbLoaded=true;kbLoadTime=now;
         showKbStatus('✦ '+knowledgeBase.casos.length+' casos cargados',true);
-      } else {
-        showKbStatus('⚠ KB: error al cargar');
-      }
+      }else{showKbStatus('⚠ KB: error al cargar');}
     }
-
-    // Método 1: fetch directo (Chrome/Firefox)
     try{
       const ctrl=new AbortController();
       const tid=setTimeout(()=>ctrl.abort(),5000);
@@ -631,8 +559,6 @@ async function loadKnowledgeBase(force=false){
       clearTimeout(tid);
       if(r.ok){const d=await r.json();processData(d);resolve();return;}
     }catch(e1){}
-
-    // Método 2: proxy allorigins (resuelve CORS en Safari/iPad/iPhone)
     try{
       const proxy='https://api.allorigins.win/get?url='+encodeURIComponent(KB_URL+'?tipo=casos_notas');
       const ctrl=new AbortController();
@@ -641,19 +567,14 @@ async function loadKnowledgeBase(force=false){
       clearTimeout(tid);
       if(r2.ok){const w=await r2.json();processData(JSON.parse(w.contents));resolve();return;}
     }catch(e2){}
-
-    // Método 3: JSONP último recurso
     const cb='dsKb_'+Date.now();
     const sc=document.createElement('script');
     const to=setTimeout(()=>{
-      delete window[cb];
-      try{document.body.removeChild(sc);}catch(e){}
-      showKbStatus('⚠ KB no disponible — el agente funciona sin casos reales');
-      resolve();
+      delete window[cb];try{document.body.removeChild(sc);}catch(e){}
+      showKbStatus('⚠ KB no disponible — el agente funciona sin casos reales');resolve();
     },10000);
     window[cb]=function(data){
-      clearTimeout(to);delete window[cb];
-      try{document.body.removeChild(sc);}catch(e){}
+      clearTimeout(to);delete window[cb];try{document.body.removeChild(sc);}catch(e){}
       processData(data);resolve();
     };
     sc.src=KB_URL+'?tipo=casos_notas&callback='+cb;
@@ -661,9 +582,10 @@ async function loadKnowledgeBase(force=false){
     document.body.appendChild(sc);
   });
 }
-let formPhotos=[];      // fotos del pie desde el formulario
-let uploadPending=[];   // archivos subidos en modo upload
-let piePhotosUpload=[]; // fotos del pie en modo upload
+
+let formPhotos=[];
+let uploadPending=[];
+let piePhotosUpload=[];
 
 const SYSTEM=`Eres Sofía, experta en fitting de puntas de ballet de DanceSpot Colombia. Sistema especializado exclusivamente en puntas de ballet. No eres asistente general.
 
@@ -840,24 +762,11 @@ REGLAS:
 - Sin ## ni *** ni introducciones ni saludos
 - Máximo 300 palabras
 - Español, tono técnico y profesional`;
-/* ── KEY ── */
-function getKey(){return localStorage.getItem(API_KEY_STORE)||'';}
-function saveKey(){
-  const k=document.getElementById('keyInput').value.trim();
-  if(!k){alert('Ingresa una API Key válida.');return;}
-  localStorage.setItem(API_KEY_STORE,k);
-  document.getElementById('keyModal').style.display='none';
-  greet();
-}
-function showKeyModal(){
-  document.getElementById('keyInput').value=getKey();
-  document.getElementById('keyModal').style.display='flex';
-}
+
 function greet(){
   addAIMsg('¡Hola! Soy **Sofía**, tu asesora experta en puntas de DanceSpot. 🩰\n\nCompleta el formulario a la izquierda con las medidas de la bailarina, adjunta fotos del pie si tienes, y haz clic en **Analizar con Sofía**. Te doy el análisis completo con tallas exactas por marca.\n\nTambién puedes preguntarme lo que necesites aquí en el chat.');
 }
 
-/* ── MODE SWITCH ── */
 function switchMode(m){
   document.getElementById('mode-form').style.display=m==='form'?'flex':'none';
   document.getElementById('mode-upload').style.display=m==='upload'?'flex':'none';
@@ -869,14 +778,12 @@ function showPaste(){
   s.style.display=s.style.display==='none'?'block':'none';
 }
 
-/* ── PHOTOS (form mode) ── */
 function onPhotosAdd(input){
   Array.from(input.files||[]).forEach(file=>{
     const r=new FileReader();
     r.onload=e=>{formPhotos.push({name:file.name,type:file.type||'image/jpeg',data:e.target.result.split(',')[1],dataUrl:e.target.result});renderPhotoGrid();};
     r.readAsDataURL(file);
-  });
-  input.value='';
+  });input.value='';
 }
 function removePhoto(i){formPhotos.splice(i,1);renderPhotoGrid();}
 function renderPhotoGrid(){
@@ -887,7 +794,6 @@ function renderPhotoGrid(){
     </div>`).join('');
 }
 
-/* ── UPLOADS (upload mode) ── */
 function onPdfAdd(input){
   Array.from(input.files||[]).forEach(file=>{
     const r=new FileReader();
@@ -923,9 +829,7 @@ function renderPieGrid(){
     </div>`).join('');
 }
 
-/* ── SEND FORM ── */
 async function sendForm(){
-  const key=getKey();if(!key){showKeyModal();return;}
   if(isThinking)return;
   const nombre=document.getElementById('f-nombre').value.trim();
   const talla=document.getElementById('f-talla').value.trim();
@@ -938,6 +842,7 @@ async function sendForm(){
     academia:document.getElementById('f-academia').value.trim()||'No indicada',
     ciudad:document.getElementById('f-ciudad').value.trim()||'No indicada',
     nivel:document.getElementById('f-nivel').value||'No indicado',
+    horas:document.getElementById('f-horas').value||'No indicadas',
     talla:talla||'No indicada',
     tipoPie:document.getElementById('f-tipo').value||'No definido',
     largoDerecho:document.getElementById('f-ld').value.trim()||'No indicado',
@@ -988,36 +893,30 @@ ${formPhotos.length>0?`Se adjuntan ${formPhotos.length} foto(s) del pie para an�
 
 Por favor genera el análisis completo con todas las marcas y tallas calculadas, TOP 3 recomendaciones y observaciones clínicas.`;
 
-  // Build content
   const content=[];
   formPhotos.forEach(p=>{
     content.push({type:'image',source:{type:'base64',media_type:p.type,data:p.data}});
   });
-  if(formPhotos.length>0) content.push({type:'text',text:'[Fotos del pie de la bailarina adjuntas arriba para análisis visual]'});
+  if(formPhotos.length>0)content.push({type:'text',text:'[Fotos del pie de la bailarina adjuntas arriba para análisis visual]'});
   content.push({type:'text',text:txt});
 
-  // Show user message
   hideWelcome();
   const chat=document.getElementById('chat');
   const div=document.createElement('div');div.className='msg user';
   let imgHtml='';
-  if(formPhotos.length>0) imgHtml=`<div class="img-grid">${formPhotos.map(p=>`<img src="${p.dataUrl}" alt="${p.name}"/>`).join('')}</div>`;
+  if(formPhotos.length>0)imgHtml=`<div class="img-grid">${formPhotos.map(p=>`<img src="${p.dataUrl}" alt="${p.name}"/>`).join('')}</div>`;
   div.innerHTML=`<div class="avatar user">Tú</div><div class="bubble user"><p>📋 Formulario de <strong>${escHtml(datos.nombre)}</strong> enviado para análisis${formPhotos.length>0?' con '+formPhotos.length+' foto(s) del pie':''}</p>${imgHtml}</div>`;
   chat.appendChild(div);chat.scrollTop=chat.scrollHeight;
-
+  lastFormData=datos;
   await callClaude(content);
 }
 
-/* ── SEND UPLOADS ── */
 async function sendUploads(){
-  const key=getKey();if(!key){showKeyModal();return;}
   if(isThinking)return;
-  if(!uploadPending.length&&!piePhotosUpload.length){
-    alert('Sube al menos un archivo o foto antes de analizar.');return;
-  }
+  if(!uploadPending.length&&!piePhotosUpload.length){alert('Sube al menos un archivo o foto antes de analizar.');return;}
   const content=[];
   uploadPending.forEach(p=>{
-    if(p.kind==='pdf') content.push({type:'document',source:{type:'base64',media_type:'application/pdf',data:p.data}});
+    if(p.kind==='pdf')content.push({type:'document',source:{type:'base64',media_type:'application/pdf',data:p.data}});
     else{content.push({type:'image',source:{type:'base64',media_type:p.type,data:p.data}});content.push({type:'text',text:'[Foto del formulario de medición — extrae todos los datos visibles]'});}
   });
   piePhotosUpload.forEach(p=>{
@@ -1025,7 +924,6 @@ async function sendUploads(){
     content.push({type:'text',text:'[Foto del pie de la bailarina para análisis visual]'});
   });
   content.push({type:'text',text:'Por favor analiza toda la información, extrae los datos del formulario, analiza las fotos del pie si las hay, y genera el análisis completo con tallas por marca y TOP 3 recomendaciones.'});
-
   hideWelcome();
   const chat=document.getElementById('chat');
   const div=document.createElement('div');div.className='msg user';
@@ -1033,24 +931,19 @@ async function sendUploads(){
   let imgs=piePhotosUpload.length>0?`<div class="img-grid">${piePhotosUpload.map(p=>`<img src="${p.dataUrl}" alt="${p.name}"/>`).join('')}</div>`:'';
   div.innerHTML=`<div class="avatar user">Tú</div><div class="bubble user"><p>Archivos enviados para análisis</p><div style="margin-top:4px">${badges}</div>${imgs}</div>`;
   chat.appendChild(div);chat.scrollTop=chat.scrollHeight;
-
   await callClaude(content);
 }
 
-/* ── PASTE ── */
 function addPasteToChat(){
   const txt=document.getElementById('pasteArea').value.trim();
   if(!txt){alert('Pega las respuestas del formulario primero.');return;}
   const content=[{type:'text',text:'FORMULARIO DE MEDICIÓN (pegado):\n\n'+txt+'\n\nGenera el análisis completo con tallas por marca y TOP 3 recomendaciones.'}];
-  hideWelcome();
-  addUserMsg('📋 Formulario pegado enviado para análisis');
+  hideWelcome();addUserMsg('📋 Formulario pegado enviado para análisis');
   document.getElementById('pasteArea').value='';
   callClaude(content);
 }
 
-/* ── CHAT FREE ── */
 async function sendChat(){
-  const key=getKey();if(!key){showKeyModal();return;}
   if(isThinking)return;
   const inp=document.getElementById('inp');
   const text=inp.value.trim();if(!text)return;
@@ -1058,52 +951,38 @@ async function sendChat(){
   addUserMsg(text);
   await callClaude([{type:'text',text}]);
 }
-
 function quickSend(text){document.getElementById('inp').value=text;sendChat();}
 
-/* ── KB CONTEXT BUILDER ── */
 function buildKbContext(){
-  if(!kbLoaded || (!knowledgeBase.casos.length && !knowledgeBase.notas.length)) return '';
+  if(!kbLoaded||(!knowledgeBase.casos.length&&!knowledgeBase.notas.length))return'';
   let ctx='\n\nCASOS REALES DANCESPOT (validar por morfología — NO buscar por nombre):\n';
   ctx+='Usa estos casos para VALIDAR tus cálculos. Si hay morfología similar, ajusta tu recomendación hacia esa talla.\n\n';
   knowledgeBase.casos.forEach(c=>{
-    const tipoPie=c.tipoPie||'';
-    const tallaZap=c.tallaZapato||'';
-    const anchoD=c.anchoDerecho||'';
-    const empeine=c.empeineDer||'';
-    const marca=c.marca||'';
-    const modelo=c.modelo||'';
-    const talla=c.talla||'';
-    const width=c.width||'';
-    const shank=c.shank||'';
-    if(marca&&talla){
-      ctx+=`CASO: pie ${tipoPie||'?'}, EU${tallaZap||'?'}, ancho ${anchoD||'?'}cm, empeine ${empeine||'?'} → ${marca} ${modelo} T${talla} ${width} ${shank}\n`;
-    }
+    const tipoPie=c.tipoPie||'';const tallaZap=c.tallaZapato||'';const anchoD=c.anchoDerecho||'';
+    const empeine=c.empeineDer||'';const marca=c.marca||'';const modelo=c.modelo||'';
+    const talla=c.talla||'';const width=c.width||'';const shank=c.shank||'';
+    if(marca&&talla)ctx+=`CASO: pie ${tipoPie||'?'}, EU${tallaZap||'?'}, ancho ${anchoD||'?'}cm, empeine ${empeine||'?'} → ${marca} ${modelo} T${talla} ${width} ${shank}\n`;
   });
   if(knowledgeBase.notas&&knowledgeBase.notas.length){
     ctx+='\nNOTAS DANCESPOT:\n';
-    knowledgeBase.notas.forEach(n=>{
-      if(n.observaciones_dancespot) ctx+=`- ${n.marca} ${n.modelo}: ${n.observaciones_dancespot}\n`;
-    });
+    knowledgeBase.notas.forEach(n=>{if(n.observaciones_dancespot)ctx+=`- ${n.marca} ${n.modelo}: ${n.observaciones_dancespot}\n`;});
   }
   ctx+='\nREGLA: Si la bailarina tiene características similares a un caso real, usa esa talla como referencia principal.\n';
   return ctx;
 }
 
-/* ── CORE API CALL ── */
+// ── CORE: llama al proxy de Netlify (funciona en iOS, Android, Safari, todos los dispositivos) ──
 async function callClaude(userContent){
-  const key=getKey();
   history.push({role:'user',content:userContent});
   isThinking=true;
   document.getElementById('sendBtn').disabled=true;
   document.getElementById('analyzeBtn').disabled=true;
   showThinking();
-  // Use KB if already loaded, don't block analysis waiting for it
-  const systemWithKB = SYSTEM + buildKbContext();
+  const systemWithKB=SYSTEM+buildKbContext();
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    const resp=await fetch(PROXY_URL,{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({model:MODEL,max_tokens:1200,system:systemWithKB,messages:history})
     });
     if(!resp.ok){const err=await resp.json().catch(()=>({}));throw new Error(err.error?.message||'Error '+resp.status);}
@@ -1113,44 +992,16 @@ async function callClaude(userContent){
     if(history.length>20)history=history.slice(-20);
     hideThinking();addAIMsg(reply);
     lastAnalysis=reply;
-    // Also capture form data if available from form fields
-    if(!lastFormData.nombre){
-      lastFormData={
-        nombre:document.getElementById('f-nombre')?document.getElementById('f-nombre').value:'',
-        edad:document.getElementById('f-edad')?document.getElementById('f-edad').value:'',
-        whatsapp:document.getElementById('f-ws')?document.getElementById('f-ws').value:'',
-        academia:document.getElementById('f-academia')?document.getElementById('f-academia').value:'',
-        ciudad:document.getElementById('f-ciudad')?document.getElementById('f-ciudad').value:'',
-        nivel:document.getElementById('f-nivel')?document.getElementById('f-nivel').value:'',
-        horas:document.getElementById('f-horas')?document.getElementById('f-horas').value:'',
-        talla:document.getElementById('f-talla')?document.getElementById('f-talla').value:'',
-        tipoPie:document.getElementById('f-tipo')?document.getElementById('f-tipo').value:'',
-        largoDerecho:document.getElementById('f-ld')?document.getElementById('f-ld').value:'',
-        largoIzquierdo:document.getElementById('f-li')?document.getElementById('f-li').value:'',
-        anchoDerecho:document.getElementById('f-ad')?document.getElementById('f-ad').value:'',
-        anchoIzquierdo:document.getElementById('f-ai')?document.getElementById('f-ai').value:'',
-        empeine:document.getElementById('f-empeine')?document.getElementById('f-empeine').value:'',
-        fuerza:document.getElementById('f-fuerza')?document.getElementById('f-fuerza').value:'',
-        estabilidad:document.getElementById('f-estab')?document.getElementById('f-estab').value:'',
-        tobillo:document.getElementById('f-tobillo')?document.getElementById('f-tobillo').value:'',
-        uso:document.getElementById('f-uso')?document.getElementById('f-uso').value:'',
-        marcas:document.getElementById('f-marcas')?document.getElementById('f-marcas').value:'',
-        conejos:document.getElementById('f-conejos')?document.getElementById('f-conejos').value:'',
-        problemas:document.getElementById('f-problemas')?document.getElementById('f-problemas').value:'',
-        obs:document.getElementById('f-obs')?document.getElementById('f-obs').value:'',
-      };
-    }
     showReportBar();
   }catch(err){
     hideThinking();
-    addAIMsg('Lo siento, hubo un error: '+err.message+'\n\nVerifica que tu API Key sea correcta y tenga créditos disponibles.');
+    addAIMsg('Lo siento, hubo un error: '+err.message+'. Si el problema persiste, contacta a DanceSpot.');
   }
   isThinking=false;
   document.getElementById('sendBtn').disabled=false;
   document.getElementById('analyzeBtn').disabled=false;
 }
 
-/* ── CHAT UI ── */
 function hideWelcome(){const w=document.getElementById('welcome');if(w)w.remove();}
 function addUserMsg(text){
   hideWelcome();
@@ -1163,25 +1014,8 @@ function addAIMsg(text){
   hideWelcome();
   const chat=document.getElementById('chat');
   const div=document.createElement('div');div.className='msg';
-  const formatted=fmtAI(text);
-  const msgId='msg_'+Date.now();
-  // Check if long response - add expand button
-  div.innerHTML=`<div class="avatar ai">S</div><div class="bubble ai" id="${msgId}">${formatted}</div>`;
+  div.innerHTML=`<div class="avatar ai">S</div><div class="bubble ai">${fmtAI(text)}</div>`;
   chat.appendChild(div);chat.scrollTop=chat.scrollHeight;
-}
-
-function toggleExpand(id){
-  const el=document.getElementById(id);
-  const btn=document.getElementById('btn_'+id);
-  if(!el)return;
-  if(el.style.maxHeight&&el.style.maxHeight!=='none'){
-    el.style.maxHeight='none';el.style.overflowY='visible';
-    if(btn)btn.textContent='↑ Colapsar';
-  } else {
-    el.style.maxHeight='420px';el.style.overflowY='auto';
-    if(btn)btn.textContent='↕ Ver análisis completo';
-    el.scrollTop=0;
-  }
 }
 function showThinking(){
   hideWelcome();
@@ -1210,77 +1044,58 @@ function escHtml(t){return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt
 
 function clearChat(){
   if(!confirm('¿Iniciar nueva sesión?'))return;
-  history=[];
+  history=[];lastFormData={};lastAnalysis='';
   const chat=document.getElementById('chat');chat.innerHTML='';
   const w=document.createElement('div');w.id='welcome';w.className='welcome';
   w.innerHTML=`<div class="welcome-logo">🩰</div><h2>Nueva sesión</h2><p>Completa el formulario y haz clic en Analizar con Sofía.</p>`;
   chat.appendChild(w);greet();
+  document.getElementById('reportBar').classList.remove('visible');
 }
 
-/* ── REPORT ── */
 let lastFormData={};
 let lastAnalysis='';
 
 function buildReport(){
   const d=lastFormData;
   const sep='='.repeat(56);
-  const L=[sep,'DANCESPOT - Reporte de Medicion Virtual de Puntas',sep,
-    'Fecha: '+new Date().toLocaleString('es-CO'),''];
-
-  // Only include fields that have data
-  const hasFormData = d.nombre||d.talla||d.largoDerecho||d.anchoDerecho;
+  const L=[sep,'DANCESPOT - Reporte de Medicion Virtual de Puntas',sep,'Fecha: '+new Date().toLocaleString('es-CO'),''];
+  const hasFormData=d.nombre||d.talla||d.largoDerecho||d.anchoDerecho;
   if(hasFormData){
     L.push('DATOS DE LA BAILARINA');
-    if(d.nombre)    L.push('Nombre        : '+d.nombre);
-    if(d.edad)      L.push('Edad          : '+d.edad);
-    if(d.whatsapp)  L.push('WhatsApp      : '+d.whatsapp);
-    if(d.academia)  L.push('Academia      : '+d.academia);
-    if(d.ciudad)    L.push('Ciudad        : '+d.ciudad);
-    if(d.nivel)     L.push('Nivel         : '+d.nivel);
-    if(d.horas)     L.push('Horas/semana  : '+d.horas);
-    L.push('');
-    L.push('MEDIDAS DEL PIE');
-    if(d.talla)          L.push('Talla nacional     : '+d.talla);
-    if(d.tipoPie)        L.push('Tipo de pie        : '+d.tipoPie);
-    if(d.largoDerecho)   L.push('Largo pie derecho  : '+d.largoDerecho+' cm');
-    if(d.largoIzquierdo) L.push('Largo pie izquierdo: '+d.largoIzquierdo+' cm');
-    if(d.anchoDerecho)   L.push('Ancho pie derecho  : '+d.anchoDerecho+' cm');
-    if(d.anchoIzquierdo) L.push('Ancho pie izquierdo: '+d.anchoIzquierdo+' cm');
-    if(d.empeine)        L.push('Empeine            : '+d.empeine);
-    if(d.fuerza)         L.push('Fuerza del pie     : '+d.fuerza);
-    if(d.estabilidad)    L.push('Estabilidad releve : '+d.estabilidad);
-    if(d.tobillo)        L.push('Control de tobillo : '+d.tobillo);
-    L.push('');
-    L.push('HISTORIAL DE PUNTAS');
-    if(d.uso)      L.push('Uso de puntas      : '+d.uso);
-    if(d.marcas)   L.push('Marcas preferidas  : '+d.marcas);
-    if(d.conejos)  L.push('Conejos/protectores: '+d.conejos);
-    if(d.problemas&&d.problemas!=='Ninguno') L.push('Problemas          : '+d.problemas);
-    if(d.obs&&d.obs!=='Ninguna') L.push('Observaciones      : '+d.obs);
+    if(d.nombre)L.push('Nombre        : '+d.nombre);
+    if(d.edad)L.push('Edad          : '+d.edad);
+    if(d.whatsapp)L.push('WhatsApp      : '+d.whatsapp);
+    if(d.academia)L.push('Academia      : '+d.academia);
+    if(d.ciudad)L.push('Ciudad        : '+d.ciudad);
+    if(d.nivel)L.push('Nivel         : '+d.nivel);
+    if(d.horas)L.push('Horas/semana  : '+d.horas);
+    L.push('');L.push('MEDIDAS DEL PIE');
+    if(d.talla)L.push('Talla nacional     : '+d.talla);
+    if(d.tipoPie)L.push('Tipo de pie        : '+d.tipoPie);
+    if(d.largoDerecho)L.push('Largo pie derecho  : '+d.largoDerecho+' cm');
+    if(d.largoIzquierdo)L.push('Largo pie izquierdo: '+d.largoIzquierdo+' cm');
+    if(d.anchoDerecho)L.push('Ancho pie derecho  : '+d.anchoDerecho+' cm');
+    if(d.anchoIzquierdo)L.push('Ancho pie izquierdo: '+d.anchoIzquierdo+' cm');
+    if(d.empeine)L.push('Empeine            : '+d.empeine);
+    if(d.fuerza)L.push('Fuerza del pie     : '+d.fuerza);
+    if(d.estabilidad)L.push('Estabilidad releve : '+d.estabilidad);
+    if(d.tobillo)L.push('Control de tobillo : '+d.tobillo);
+    L.push('');L.push('HISTORIAL DE PUNTAS');
+    if(d.uso)L.push('Uso de puntas      : '+d.uso);
+    if(d.marcas)L.push('Marcas preferidas  : '+d.marcas);
+    if(d.conejos)L.push('Conejos/protectores: '+d.conejos);
+    if(d.problemas&&d.problemas!=='Ninguno')L.push('Problemas          : '+d.problemas);
+    if(d.obs&&d.obs!=='Ninguna')L.push('Observaciones      : '+d.obs);
     L.push('');
   }
-
-  L.push(sep);
-  L.push('ANALISIS Y RECOMENDACIONES - SOFIA (DanceSpot IA)');
-  L.push(sep);
-  L.push('');
-  // Clean the analysis text - remove markdown symbols for plain text
-  const cleanAnalysis=(lastAnalysis||'Sin analisis generado aun')
-    .replace(/#{1,3} /g,'')
-    .replace(/\*\*([^*]+)\*\*/g,'$1')
-    .replace(/\*([^*]+)\*/g,'$1')
-    .replace(/^- /gm,'• ');
-  L.push(cleanAnalysis);
-  L.push('');
-  L.push(sep);
-  L.push('Generado por DanceSpot - Sistema de Medicion Virtual de Puntas');
-  L.push('Validar por prueba presencial o videollamada.');
+  L.push(sep);L.push('ANALISIS Y RECOMENDACIONES - SOFIA (DanceSpot IA)');L.push(sep);L.push('');
+  const cleanAnalysis=(lastAnalysis||'Sin analisis generado aun').replace(/#{1,3} /g,'').replace(/\*\*([^*]+)\*\*/g,'$1').replace(/\*([^*]+)\*/g,'$1').replace(/^- /gm,'• ');
+  L.push(cleanAnalysis);L.push('');
+  L.push(sep);L.push('Generado por DanceSpot - Sistema de Medicion Virtual de Puntas');L.push('Validar por prueba presencial o videollamada.');
   return L.join('\n');
 }
 
-function showReportBar(){
-  document.getElementById('reportBar').classList.add('visible');
-}
+function showReportBar(){document.getElementById('reportBar').classList.add('visible');}
 
 function downloadReport(){
   const txt=buildReport();
@@ -1298,7 +1113,7 @@ function copyReport(){
   const done=document.getElementById('copyDone');
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(txt).then(()=>{done.style.display='inline';setTimeout(()=>done.style.display='none',2500);});
-  } else {
+  }else{
     const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);
     ta.select();document.execCommand('copy');document.body.removeChild(ta);
     done.style.display='inline';setTimeout(()=>done.style.display='none',2500);
@@ -1306,14 +1121,8 @@ function copyReport(){
 }
 
 window.onload=function(){
-  const k=getKey();
-  if(k){
-    document.getElementById('keyModal').style.display='none';
-    greet();
-    setTimeout(()=>loadKnowledgeBase(),500); // Load KB async after init
-  } else {
-    document.getElementById('keyInput').value='';
-  }
+  greet();
+  setTimeout(()=>loadKnowledgeBase(),500);
 };
 </script>
 </body>
